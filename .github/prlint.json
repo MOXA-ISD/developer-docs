@@ -1,0 +1,14 @@
+{
+  "title": [
+    {
+      "pattern": "^(build|ci|docs|feat|fix|perf|refactor|style|test|chore|revert)((.+))?:\\s.+",
+      "message": "Your PR title doesn’t match our schema"
+    }
+  ],
+  "labels.0.name": [
+    {
+      "pattern": "tag: new feature|tag: breaking change|tag: bug fix|tag: enhancement|tag: documentation|tag: internal",
+      "message": "Please add a label"
+    }
+  ]
+}
