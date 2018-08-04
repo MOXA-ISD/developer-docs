@@ -22,6 +22,7 @@
     "commitmsg": "commitlint -e $GIT_PARAMS",
     "dotenv": "dotenv",
     "create:version": "yarn --cwd ./website run version",
+    "create:edge:pdf": "node ./scripts/topdf.js",
     "release": "semantic-release",
     "travis-deploy-once": "travis-deploy-once"
   },
