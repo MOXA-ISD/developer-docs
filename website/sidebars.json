@@ -1,6 +1,9 @@
 {
-  "docs": {
+  "edge": {
     "Getting Started": ["edge/intro"],
     "Development": ["edge/app"]
+  },
+  "ui": {
+    "Getting Started": ["ui/intro"]
   }
 }
