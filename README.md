@@ -34,6 +34,10 @@ title: <title name which shows on both sidebar and content>
 
 After create document, you have to modify `sidebars.json`.
 
+### Image Assets
+
+Put your image file in the `docs/assets` folder and use relative path in your document.
+
 ### Other Document Instractions
 
 Please check [Docusaurus](https://docusaurus.io/docs/en/doc-markdown)
