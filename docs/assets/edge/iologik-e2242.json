@@ -1,0 +1,45 @@
+{
+  "templateName": "iologik-e2242.json",
+  "tagList": [
+    {
+      "id": "di0",
+      "op": "read",
+      "type": "uint16",
+      "requestTimeoutMs": 5000,
+      "pollingPeriodMs": 1000,
+      "address": 0,
+      "quantity": 1,
+      "function": "read-coils"
+    },
+    {
+      "id": "di1",
+      "op": "read",
+      "type": "uint16",
+      "requestTimeoutMs": 5000,
+      "pollingPeriodMs": 1000,
+      "address": 1,
+      "quant\nity": 1,
+      "function": "read-coils"
+    },
+    {
+      "id": "di2",
+      "op": "read",
+      "type": "uint16",
+      "requestTimeoutMs": 5000,
+      "pollingPeriodMs": 1000,
+      "address": 2,
+      "quantity": 1,
+      "function": "read-coils"
+    },
+    {
+      "id": "di3",
+      "op": "read",
+      "type": "uint16",
+      "requestTimeoutMs": 5000,
+      "pollingPeriodMs": 1000,
+      "address": 3,
+      "quantity": 1,
+      "function": "read-coils"
+    }
+  ]
+}
