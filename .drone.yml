@@ -1,0 +1,25 @@
+pipeline:
+  checkout:
+    image: docker.moxa.online/build/base:jessie
+    commands:
+      - git checkout --track -b ${DRONE_BRANCH} origin/${DRONE_BRANCH}
+      - git merge ${CI_COMMIT_BRANCH}
+    when:
+      event:
+        exclude: [ pull_request, tag ]
+      branch:
+        exclude: [ master ]
+      local: false
+
+  upload_doc:
+    image: docker.moxa.online/build/base:jessie
+    environment:
+      - DOC_TARGET=/mnt/storage/repo/static/v3/edge/doc
+    commands:
+      - rm -r $${DOC_TARGET}
+      - mkdir -p $${DOC_TARGET}
+      - cp -r ./* $${DOC_TARGET}/
+    when:
+      event: [ push, pull_request ]
+    volumes:
+      - /mnt/storage:/mnt/storage:z
