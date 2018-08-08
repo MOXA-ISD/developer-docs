@@ -1,6 +1,6 @@
 ---
 id: dm
-title: 'DM SDK'
+title: DM SDK
 ---
 
 ## Introduction

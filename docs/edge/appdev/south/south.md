@@ -1,6 +1,6 @@
 ---
 id: south
-title: 'Southbound SDK'
+title: Southbound SDK
 ---
 
 - public tag value (python)

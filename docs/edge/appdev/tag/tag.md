@@ -1,39 +1,13 @@
 ---
 id: tag
-title: 'Tag SDK'
+title: Tag SDK
 ---
 
-# Tag SDK
+In this quickstart you learn how to develop a your application by ThingsPro data acquisition SDK.
 
-Introduction: Introduction how to :
+## Installation
 
-1. Get IO/System/Virtual tag list.
-2. Pub/Sub tag value.
-3. Get tag list by cli utility.
-   Publisher: Justin
-   Type: DA SDK
-
-# Introduction
-
----
-
-In this quickstart you learn how to develop a your application by ThingsPro data acquisition SDK .
-
-1. Installation
-1. [System Requirements](https://www.notion.so/isd/Tag-SDK-8ab5143d00dd46b881f27a19c033a8df#be2ba72e18be476b841cb34a464f2fea)
-1. [Prerequisites](https://www.notion.so/isd/Tag-SDK-8ab5143d00dd46b881f27a19c033a8df#d2f4ab945db9412eaa4437b4f97495e9)
-1. Tag SDK
-1. [Tag list API](https://www.notion.so/isd/Tag-SDK-8ab5143d00dd46b881f27a19c033a8df#e9bba49c193640879e74875ae5e7f502)
-   - [Example: get tag list](https://www.notion.so/isd/Tag-SDK-8ab5143d00dd46b881f27a19c033a8df#726d69f8357c4045898105505fb8dc0c)
-   - [Example: get tag list in json format](https://www.notion.so/isd/Tag-SDK-8ab5143d00dd46b881f27a19c033a8df#86651dcf45624b22b1a015c5ecece78a)
-1. [Tag Pub/Sub API](https://www.notion.so/isd/Tag-SDK-8ab5143d00dd46b881f27a19c033a8df#7da711fd8f35478b9219038cba1979fb)
-   - [Example: publish tag](https://www.notion.so/isd/Tag-SDK-8ab5143d00dd46b881f27a19c033a8df#7118c1fdf9da4ea5ace2eb40aee2a0a4)
-   - [Example: subscribe tag](Example: subscribe tag)
-1. [Tag CLI](https://www.notion.so/isd/Tag-SDK-8ab5143d00dd46b881f27a19c033a8df#f227bda56a6a46649f7d607499b13fc8)
-
-# Installation
-
-## System Requirements
+### System Requirements
 
 Tag SDK is tested to compile and run on the following systems:
 
@@ -44,7 +18,7 @@ Architectures:
 - armhf
 - amd64
 
-## Prerequisites
+### Prerequisites
 
 Before you start a new adventure with ThingsPro Tag SDK. You need to set up the repository. Afterward, you can install and update the relevant packages from the repository.
 
@@ -65,61 +39,53 @@ Before you start a new adventure with ThingsPro Tag SDK. You need to set up the 
     	libmxtagf-dev \
     	libmxtaglist
 
-# Tag SDK
+## Tag List API
 
----
+### mxtag_list
 
-# Tag List API
+Be used to obtain tag list by the specific type `tag_type_t`.
 
-- **mxtag_list**
+    int mxtag_list( mxtaglist_t **tags,
+                    tag_type_t type )
 
-  Be used to obtain tag list by the specific type `tag_type_t`.
+Parameters
 
-      int mxtag_list( mxtaglist_t **tags,
-                      tag_type_t type )
+- tags A pointer to the tag list instance which is assigned value afterwards.
+- type the type of tag list, including `io`, `system`, `virtual`.
 
-  ## Parameters
+Returns
 
-  - tags A pointer to the tag list instance which is assigned value afterwards.
-  - type the type of tag list, including `io`, `system`, `virtual`.
+If the function succeeds, the return value is the number of the tag list size ≥ 0. Otherwise, the return value is -1 on failure.
 
-  ## Returns
-
-  If the function succeeds, the return value is the number of the tag list size ≥ 0. Otherwise, the return value is -1 on failure.
-
----
-
-- **mxtag_list_to_json**
+### mxtag_list_to_json
 
       char *mxtag_list_to_json( tag_type_t type )
 
-  Be used to obtain tag list in json format by the specific type `tag_type_t`.
+Be used to obtain tag list in json format by the specific type `tag_type_t`.
 
-  ## Parameters
+Parameters
 
-  - type the type of tag list, including `io`, `system`, `virtual`.
+- type the type of tag list, including `io`, `system`, `virtual`.
 
-  ## Returns
+Returns
 
-  If the function succeeds, the return value is a json format content of tag list. Otherwise, the return value is NULL on failure.
+If the function succeeds, the return value is a json format content of tag list. Otherwise, the return value is NULL on failure.
 
----
+### mxtag_list_free
 
-- **mxtag_list_free**
+Free memory that was allocated in `mxtag_list`.
 
       void mxtag_list_free( mxtaglist_t **tags )
 
-  Free memory that was allocated in `mxtag_list`.
+Parameters
 
-  ## Parameters
+- tags A pointer to the tag list instance.
 
-  - tags A pointer to the tag list instance.
+Returns
 
-  ## Returns
+None.
 
-  None.
-
-## Example: get tag list
+### Example: get tag list
 
     #include <mxtaglist.h>
 
@@ -144,7 +110,7 @@ Before you start a new adventure with ThingsPro Tag SDK. You need to set up the 
         return 0;
     }
 
-## Example: get tag list in json format
+### Example: get tag list in json format
 
     #include <mxtaglist.h>
 
@@ -160,9 +126,9 @@ Before you start a new adventure with ThingsPro Tag SDK. You need to set up the 
 
 ---
 
-# Tag Pub/Sub API
+## Tag Pub/Sub API
 
-- **mxtag_publish**
+### mxtag_publish
 
       int mxtag_publish( tag_t           *tag,
                          const char      *source_name,
@@ -172,75 +138,69 @@ Before you start a new adventure with ThingsPro Tag SDK. You need to set up the 
                          data_value_t    *data_value,
                          data_type_t      data_type )
 
-  ## Parameters
+Parameters
 
-  - tag Instance of tag api.
-  - source_name Source of tag in which the data comes from.
-  - tag_name Name of tag.
-  - tag_ts Timestamp at tag publishing.
-  - tag_unit Unit of tag.
-  - data_type Data type of tag [uint16, uint32, uint64, int16, int32, int64, float32, float64, string, boolean, bytearray]
-  - data_value Value of tag.
+- tag Instance of tag api.
+- source_name Source of tag in which the data comes from.
+- tag_name Name of tag.
+- tag_ts Timestamp at tag publishing.
+- tag_unit Unit of tag.
+- data_type Data type of tag [uint16, uint32, uint64, int16, int32, int64, float32, float64, string, boolean, bytearray]
+- data_value Value of tag.
 
-  ## Returns
+Returns
 
-  If the function succeeds, the return value is 0. Otherwise, 1 on failure.
+If the function succeeds, the return value is 0. Otherwise, 1 on failure.
 
 ---
 
-- **mxtag_subscribe**
+### mxtag_subscribe
 
       int mxtag_subscribe( tag_t           *tag,
                            const char      *source_name,
                            const char      *tag_name )
 
-  ## Parameters
+Parameters
 
-  - tag Instance of tag api.
-  - source_name Source of tag in which the data comes from.
-  - tag_name Name of tag.
+- tag Instance of tag api.
+- source_name Source of tag in which the data comes from.
+- tag_name Name of tag.
 
-  ## Returns
+Returns
 
-  If the function succeeds, the return value is 0. Otherwise, 1 on failure.
+If the function succeeds, the return value is 0. Otherwise, 1 on failure.
 
----
-
-- **mxtag_unsubscribe**
+### mxtag_unsubscribe
 
       int mxtag_unsubscribe( tag_t           *tag,
                              const char      *source_name,
                              const char      *tag_name )
 
-  ## Parameters
+Parameters
 
-  - tag Instance of tag api.
-  - source_name Source of tag in which the data comes from.
-  - tag_name Name of tag.
+- tag Instance of tag api.
+- source_name Source of tag in which the data comes from.
+- tag_name Name of tag.
 
-  ## Returns
+Returns
 
-  If the function succeeds, the return value is 0. Otherwise, 1 on failure.
+If the function succeeds, the return value is 0. Otherwise, 1 on failure.
 
----
-
-- **mxtag_subscribe_callback**
+### mxtag_subscribe_callback
 
       int mxtag_subscribe_callback( tag_t      *tag,
                                     on_tag      cb_func )
 
-  ## Parameters
+Parameters
 
-  - tag Instance of tag api.
-  - cb_func Callback function to receive subscribed tags.
+- tag Instance of tag api.
+- cb_func Callback function to receive subscribed tags.
 
-  ## Returns
+Returns
 
-  If the function succeeds, the return value is 0. Otherwise, 1 on failure.
+If the function succeeds, the return value is 0. Otherwise, 1 on failure.
 
----
-
-## **Example: publish tag**
+### Example: publish tag
 
     #include <stdio.h>
     #include <mxtagf.h>
@@ -268,7 +228,7 @@ Before you start a new adventure with ThingsPro Tag SDK. You need to set up the 
         return 0;
     }
 
-## **Example: subscribe tag**
+### Example: subscribe tag
 
     #include <mxtagf.h>
 
@@ -347,7 +307,7 @@ Before you start a new adventure with ThingsPro Tag SDK. You need to set up the 
 
 ---
 
-# Tag CLI
+## Tag CLI
 
     Usage: tagcli [commands]
 

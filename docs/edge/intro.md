@@ -3,22 +3,24 @@ id: intro
 title: Getting Started
 ---
 
-**ThingsPro Edge** is made up of modules, and the currently supported modules have the following items :
+**FIXME: image and description that only show what user cares**
+
+ThingsPro Edge is made up of modules, and the currently supported modules have the following items:
 
 - message broker
 - ThingsPro message controller
-- docker daemon
-- DM gateway
-- DM device
+- Docker daemon
+- Device management(DM) gateway
+- Device management(DM) device
 - ThingsPro APPs : **APP** is the software that running on the ThingsPro APPs in ThingsPro Edge.
 
 ![system-overview](assets/edge/system-overview.png)
 
 ## Install ThingsPro Edge
 
-We provide a single command to install ThingsPro Edge that ssh to the board, such as UC-8112, and run as root
+We provide a single command to install ThingsPro Edge in MOXA hardware by run following command as root
 
-```
+```shell
 root@Moxa:~# curl http://repo.moxa.online/static/v3/edge/install.sh | sh -s $PRODUCT_NAME
 ...
 **********************************************************
@@ -31,9 +33,9 @@ Currently Supported Products:
 - uc8112-lx-cg
 - mc1121
 
-Find the up-to-date product list by
+You may also find the up-to-date product list by
 
-```
+```shell
 root@Moxa:~# curl -s http://repo.moxa.online/static/v3/edge/install.sh | sh
 usage: ./install.sh <product>
 products:
@@ -43,48 +45,31 @@ products:
 
 Start ThingsPro Edge
 
-```
+```shell
 root@Moxa:~# service thingspro-edge start
 ```
 
 ## Install API and Web Service
 
+**FIXME: command output change**
+
 ThingsPro Edge provides RESTful API for management that is listed in [ThingsPro Edge OAPI server](https://thingspro-edge-oapi.netlify.com/). To enable API service, we have to install ThingsPro Web APP by following command
 
-```
-root@Moxa:~# appman app install http://repo.isd.moxa.com/static/v3/edge/apps/release/thingspro-web_0.2.1-80_armhf.mpkg
+```shell
+root@Moxa:~# appman app install thingspro-web
 ```
 
 NOTE: If the command returns "appman is not ready", that means you have to wait a few seconds until ThingsPro Edge is ready to install web service.
 
 It will take a while and you may monitor the installation progress by
 
-```
+```shell
 root@Moxa:~# appman app ls
-{
-  "thingspro-web": {
-    "arch": "armhf",
-    "attributes": [
-      "alwaysInstalled",
-      "alwaysStarted"
-    ],
-    "description": "ThingsPro backend and frontend",
-    "desiredState": "ready",
-    "displayName": "ThingsPro",
-    "hardware": null,
-    "health": "good",
-    "icon": "",
-    "imageSize": 0,
-    "name": "thingspro-web",
-    "state": "ready",
-    "version": "0.2.1"
-  }
-}
 ```
 
 Or use following command to refresh every 5 seconds
 
-```
+```shell
 root@Moxa:~# watch -n 5 appman app ls fields=runtime --no-color
 Every 5.0s: appman app ls fields=runtime --no-color
 {
@@ -96,11 +81,11 @@ Every 5.0s: appman app ls fields=runtime --no-color
 }
 ```
 
-If web service is ready, the state field will show `ready`.
+If web service is ready, the state will show `ready`.
 
 Now, you can check device profile via API
 
-```
+```shell
 root@Moxa:~# curl -s https://127.0.0.1/api/v1/profile \
         -X GET \
         -H "Content-Type:application/json" \
@@ -139,17 +124,19 @@ root@Moxa:~# curl -s https://127.0.0.1/api/v1/profile \
 }
 ```
 
-## Data acquisition
+## Acquire Data
 
 ThingsPro Edge have ability to extend functions by installing APPs. For example, we now install one southbound APP _Modbus_ for enabling data acquisition.
 
-```
-root@Moxa:~# appman app install http://repo.moxa.online/static/v3/edge/apps/mxmodbusmaster_3.1.0_armhf.mpkg
+```shell
+root@Moxa:~# appman app install modbusmaster
 ```
 
-Before creating a device, we must add a template defining data elements(tags). The template can be download at [here](./iologik-e2242.json)
+### Add Devices
 
-```
+Before creating a device, we must add a template that defines data elements(tags). The template can be download at [here](assets/edge/iologik-e2242.json)
+
+```shell
 root@Moxa:~# curl https://127.0.0.1/api/v1/tags/fieldbus/modbus/templates/iologik-e2242 \
         -X POST \
         -H "Content-Type:application/json" \
@@ -157,9 +144,11 @@ root@Moxa:~# curl https://127.0.0.1/api/v1/tags/fieldbus/modbus/templates/iologi
         -d @./iologik-e2242.json
 ```
 
-Add a device associating to the template, where `10.144.33.168` must be replaced to IP Address of your computer that simulate a modbus device
+Add a device associating to the template, where `10.144.33.168` must be replaced to IP address of your computer that simulate a modbus device
 
-```
+**FIXME: add computer screenshot to simulate modbus**
+
+```shell
 root@Moxa:~# curl https://127.0.0.1/api/v1/tags/fieldbus/modbus/devices/My_iologik-e2242 \
         -X POST \
         -H "Content-Type:application/json" \
@@ -167,71 +156,70 @@ root@Moxa:~# curl https://127.0.0.1/api/v1/tags/fieldbus/modbus/devices/My_iolog
         -d '{"name":"My_ioLogik-E2242","interface":"eth0","templateName":"iologik-e2242.json","host":"10.144.33.168","deviceId":0,"service":502}'
 ```
 
-TODO Get each end devices connection status
+You now can check device connection and status
 
+**FIXME: output**
+
+```shell
+root@Moxa:~# mxfbcli -p modbus -a
 ```
-root@Moxa:~#  mxfbcli -p modbus -a
-```
 
-response :
+### Collect Data
 
-????
+In previous section, we add a device and define its data element that called **IO Tag** in ThingsPro Edge. IO Tag can be listed by API
 
-TODO Get tag list in the ThingsPro Edge
-
-`IO tags` (all southbound app's tags are in this category)
-
-```
-root@Moxa:~# curl https://10.144.33.162/api/v1/tags/fieldbus \
+```shell
+root@Moxa:~# curl https://127.0.0.1/api/v1/tags/fieldbus \
         -X GET \
         -H "Content-Type:application/json" \
         -H "mx-api-token:$(cat /etc/mx-api-token)" -k
 ```
 
-`System tags`
+If you want to retrieve CPU usage, memory usage and others metrics of system that named **System Tag**. The supported system tag can be fetched by
 
-root@Moxa:~# curl https://10.144.33.162/api/v1/tags/system \
- -X GET\
- -H "Content-Type:application/json" \
- -H "mx-api-token:$(cat /etc/mx-api-token)" --insecure
-
-`Virtual tags`
-
-```
-$ curl https://10.144.33.162/api/v1/tags/virtual \
+```shell
+root@Moxa:~# curl https://127.0.0.1/api/v1/tags/system \
         -X GET \
         -H "Content-Type:application/json" \
-        -H "mx-api-token:$(cat /etc/mx-api-token)" --insecure
+        -H "mx-api-token:$(cat /etc/mx-api-token)" -k
 ```
 
-**Get(Subscribe) tag value by Tag API (c/python api)**
+The last tag is **Virtual Tag**. It is used by APP(normaly a north APP) publishing virtual data which used by another APP after it streamlines real data from devices. The supported virtual tags list by following API
 
-_python example :_
-
+```shell
+$ curl https://127.0.0.1/api/v1/tags/virtual \
+        -X GET \
+        -H "Content-Type:application/json" \
+        -H "mx-api-token:$(cat /etc/mx-api-token)" -k
 ```
+
+To subscribe data, we used a simple Python code to show
+
+```python
 from libmxidaf_py import TagV2
 
 def on_tag_callback(equipment_name, tag_name, tag):
-  print "{}:{}:{}:{}:{}".format(
-      equipment_name,
-      tag_name,
-      tag.at(),
-      tag.value(),
-      tag.unit())
+    print("{}:{}:{}:{}:{}".format(
+        equipment_name,
+        tag_name,
+        tag.at(),
+        tag.value(),
+        tag.unit()
+    ))
 
 tagv2 = TagV2.instance()
 tagv2.subscribe_callback(on_tag_callback)
 tagv2.subscribe(
-  "My_ioLogik-E2242",
-  "di0")
+    "My_ioLogik-E2242",
+    "di0"
+)
 
 tagv2 = TagV2.instance()
 ```
 
-**Set tag value by Tag API (c/python api)**
-**publish tag value**
+The code publish data as following
 
-```
+```python
 from libmxidaf_py import TagV2, Tag, Time, Value
 
 tagv2 = TagV2.instance()
@@ -242,13 +230,14 @@ tagv2.publish (
     Tag(
         Value(5.010),
         Time.now(),
-        "dbm")
+        "dbm"
+    )
 )
 ```
 
-**direct read/write io tag value**
+ThinsgPro Edge also provide capability to directly communicate with device. Here is a C sample for reference that reads IO tag directly
 
-```
+```c
 int main()
 {
     mxfb_t *fb = mxfb_new();
@@ -268,11 +257,11 @@ int main()
 }
 ```
 
-shell command :
+We have provided corresponding shell command:
 
-```
-$ # read
-$ mxfbcli -e My_ioLogik-E2242 -t di0 -r
-$ # write
-$ mxfbcli -e My_ioLogik-E2242 -t do0 -u 1
+```shell
+root@Moxa:~# # read
+root@Moxa:~# mxfbcli -e My_ioLogik-E2242 -t di0 -r
+root@Moxa:~# # write
+root@Moxa:~# mxfbcli -e My_ioLogik-E2242 -t do0 -u 1
 ```
