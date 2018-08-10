@@ -21,7 +21,7 @@ ThingsPro Edge is made up of modules, and the currently supported modules have t
 We provide a single command to install ThingsPro Edge in MOXA hardware by run following command as root
 
 ```shell
-root@Moxa:~# curl http://repo.moxa.online/static/v3/edge/install.sh | sh -s $PRODUCT_NAME
+root@Moxa:~# wget -O- http://repo.moxa.online/static/v3/edge/install.sh | sh -s $PRODUCT_NAME
 ...
 **********************************************************
 * The installation process ended successfully.
@@ -36,7 +36,7 @@ Currently Supported Products:
 You may also find the up-to-date product list by
 
 ```shell
-root@Moxa:~# curl -s http://repo.moxa.online/static/v3/edge/install.sh | sh
+root@Moxa:~# wget -O- http://repo.moxa.online/static/v3/edge/dists/v0.3.0/install.sh | sh
 usage: ./install.sh <product>
 products:
   - mc1121
