@@ -3,7 +3,7 @@ id: tag
 title: Tag SDK
 ---
 
-In this quickstart you learn how to develop a your application by ThingsPro data acquisition SDK.
+In this quickstart you learn how to develop your application by ThingsPro data acquisition SDK.
 
 ## Installation
 
@@ -50,8 +50,10 @@ Be used to obtain tag list by the specific type `tag_type_t`.
 
 Parameters
 
-- tags A pointer to the tag list instance which is assigned value afterwards.
-- type the type of tag list, including `io`, `system`, `virtual`.
+|Name|Description|
+|:--:|:----|
+|tags|A pointer to the tag list instance which is assigned value afterwards.|
+|type|the type of tag list, including `io`, `system`, `virtual`.|
 
 Returns
 
@@ -65,7 +67,9 @@ Be used to obtain tag list in json format by the specific type `tag_type_t`.
 
 Parameters
 
-- type the type of tag list, including `io`, `system`, `virtual`.
+|Name|Description|
+|:--:|:----|
+|type|the type of tag list, including `io`, `system`, `virtual`.|
 
 Returns
 
@@ -79,7 +83,10 @@ Free memory that was allocated in `mxtag_list`.
 
 Parameters
 
-- tags A pointer to the tag list instance.
+|Name|Description|
+|:--:|:----|
+|tags|A pointer to the tag list instance.|
+|type|the type of tag list, including `io`, `system`, `virtual`.|
 
 Returns
 
@@ -97,10 +104,10 @@ None.
         for (i = 0; i < size; i++) {
             printf("source name: %s\n", taglist[i].source_name);
             printf("tag name: %s\n", taglist[i].tag_name);
-            printf("data type: %s\n", taglist[i].data_type);
+            printf("data type: %d\n", taglist[i].data_type);
             printf("data unit: %s\n", taglist[i].data_unit);
-            printf("access: %s\n", taglist[i].access);
-            printf("duration: %d ms\n", taglist[i].duration);
+            printf("access: %d\n", taglist[i].access);
+            printf("duration: %u ms\n", taglist[i].duration);
         }
 
         if (taglist) {
@@ -140,13 +147,15 @@ None.
 
 Parameters
 
-- tag Instance of tag api.
-- source_name Source of tag in which the data comes from.
-- tag_name Name of tag.
-- tag_ts Timestamp at tag publishing.
-- tag_unit Unit of tag.
-- data_type Data type of tag [uint16, uint32, uint64, int16, int32, int64, float32, float64, string, boolean, bytearray]
-- data_value Value of tag.
+|Name|Description|
+|:--:|:----|
+|tag|Instance of tag api.|
+|source_name|Source of tag in which the data comes from.|
+|tag_name|Name of tag.|
+|tag_ts|Timestamp at tag publishing.|
+|tag_unit|Unit of tag.|
+|data_type|Data type of tag [uint16, uint32, uint64, int16, int32, int64, float32, float64, string, boolean, bytearray]|
+|data_value|Value of tag.|
 
 Returns
 
@@ -162,9 +171,11 @@ If the function succeeds, the return value is 0. Otherwise, 1 on failure.
 
 Parameters
 
-- tag Instance of tag api.
-- source_name Source of tag in which the data comes from.
-- tag_name Name of tag.
+|Name|Description|
+|:--:|:----|
+|tag|Instance of tag api.|
+|source_name|Source of tag in which the data comes from.|
+|tag_name|Name of tag.|
 
 Returns
 
@@ -178,9 +189,11 @@ If the function succeeds, the return value is 0. Otherwise, 1 on failure.
 
 Parameters
 
-- tag Instance of tag api.
-- source_name Source of tag in which the data comes from.
-- tag_name Name of tag.
+|Name|Description|
+|:--:|:----|
+|tag|Instance of tag api.|
+|source_name|Source of tag in which the data comes from.|
+|tag_name|Name of tag.|
 
 Returns
 
@@ -312,11 +325,11 @@ If the function succeeds, the return value is 0. Otherwise, 1 on failure.
     Usage: tagcli [commands]
 
     commands:
-      ls [options]  get tag list by the specific type
-      options:      [-i <IO tag list>]
-                    [-s <System tag list>]
-                    [-v <Virtual tag list>]
+      --list [options]  get tag list by the specific type
+      options:          [io <IO tag list>]
+                        [system <System tag list>]
+                        [virtual <Virtual tag list>]
 
 **GET IO TAGS:**
 
-    tagcli ls -i
+    tagcli --list system
