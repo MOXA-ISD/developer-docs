@@ -19,7 +19,8 @@ pipeline:
       #FIXME - rm -rf $${DOC_TARGET}
       - mkdir -p $${DOC_TARGET}
       - cp -r ./* $${DOC_TARGET}/
-      - sed -i "s#baseUrl:.*#baseUrl: '/',#" $${DOC_TARGET}/website/siteConfig.js
+      - |
+        sed -i "s#baseUrl:.*#baseUrl: '/',#" $${DOC_TARGET}/website/siteConfig.js
     when:
       event: [ push, pull_request ]
     volumes:
