@@ -16,7 +16,7 @@ pipeline:
     environment:
       - DOC_TARGET=/mnt/storage/repo/static/v3/edge/doc
     commands:
-      - rm -rf $${DOC_TARGET}
+      #FIXME - rm -rf $${DOC_TARGET}
       - mkdir -p $${DOC_TARGET}
       - cp -r ./* $${DOC_TARGET}/
     when:
