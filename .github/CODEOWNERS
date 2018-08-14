@@ -1,2 +1,3 @@
 # Pings someone when PRs are to this module
-docs/edge/* @@fcwu @GaryHsu77 @CPtung
+docs/edge-* @fcwu @GaryHsu77 @CPtung
+docs/ui-* @zack9433
