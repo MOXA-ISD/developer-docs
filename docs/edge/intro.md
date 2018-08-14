@@ -3,18 +3,11 @@ id: intro
 title: Getting Started
 ---
 
-**FIXME: image and description that only show what user cares**
-
-ThingsPro Edge is made up of modules, and the currently supported modules have the following items:
-
-- message broker
-- ThingsPro message controller
-- Docker daemon
-- Device management(DM) gateway
-- Device management(DM) device
-- ThingsPro APPs : **APP** is the software that running on the ThingsPro APPs in ThingsPro Edge.
+ThingsPro Edge is an intelligent industrial IoT edge device to help you accelerate development of your IIoT applications and create a smarter field site. ThingsPro Edge extends connectivity for data acquisition by APPs as shown in following image.
 
 ![system-overview](assets/edge/system-overview.png)
+
+**Southbound APP** acquires data from device and publishing data to any subcriber. It also listens direct command from northbound APP and response to the underlying devices. **Northbound APP** usually subscribes data from southbound APP and exports to the cloud. It comprises web interface, backend HTTP service and a daemon to configure, for example, which tags to be uploaded and collecting interval. **DATA CORE** is responsible to manage devices and tags. Southbound APP will be notified when a device registers to ThingsPro Edge with the protocol the southbound APP provieded which is introduced in Tag SDK. Web interface of northbound APP is needed to register to **WEB SERVER** that is a reverse proxy to sucure REST API. APP life cycle is managed by **APP SERVICE**. APP is container based and package by ThingsPro developent kit that will be introduced in APP development section.
 
 ## Install ThingsPro Edge
 
@@ -28,7 +21,7 @@ root@Moxa:~# wget -O- http://repo.moxa.online/static/v3/edge/dists/v0.3.0/instal
 **********************************************************
 ```
 
-Currently Supported Products:
+lurrently Supported Products:
 
 - uc8112-lx-cg
 - mc1121
@@ -51,9 +44,25 @@ root@Moxa:~# service thingspro-edge start
 
 ## Install API and Web Service
 
-**FIXME: command output change**
+ThingsPro Edge provides RESTful API for management that is listed in [ThingsPro Edge OAPI server](https://thingspro-edge-oapi.netlify.com/). To enable API service, we have to install ThingsPro Web APP. First, update APPs index
 
-ThingsPro Edge provides RESTful API for management that is listed in [ThingsPro Edge OAPI server](https://thingspro-edge-oapi.netlify.com/). To enable API service, we have to install ThingsPro Web APP by following command
+```shell
+root@Moxa:/home/moxa# appman source update --force
+I: updating source stable(https://repo.moxa.online/static/v3/edge/dists/v0.3.0/apps)
+I: updated source stable(https://repo.moxa.online/static/v3/edge/dists/v0.3.0/apps)
+I: updating package app-azure_0.3.0-15_amd64.mpkg
+I: updating package app-azure_0.3.0-15_armhf.mpkg
+I: updating package console_0.3.0-5_amd64.mpkg
+I: updating package console_0.3.0-5_armhf.mpkg
+I: updating package linuxdesktop_0.3.0-10_amd64.mpkg
+I: updating package linuxdesktop_0.3.0-10_armhf.mpkg
+I: updating package tagservice_0.2.4-14_amd64.mpkg
+I: updating package tagservice_0.2.4-14_armhf.mpkg
+I: updating package thingspro-web_0.3.0-1_amd64.mpkg
+I: updating package thingspro-web_0.3.0-1_armhf.mpkg
+```
+
+Install thingspro-web
 
 ```shell
 root@Moxa:~# appman app install thingspro-web
@@ -65,20 +74,17 @@ It will take a while and you may monitor the installation progress by
 
 ```shell
 root@Moxa:~# appman app ls
-```
-
-Or use following command to refresh every 5 seconds
-
-```shell
-root@Moxa:~# watch -n 5 appman app ls fields=runtime --no-color
-Every 5.0s: appman app ls fields=runtime --no-color
-{
-  "thingspro-web": {
-    "desiredState": "ready",
-    "health": "good",
-    "state": "ready"
-  }
-}
++---------------+--------------------+--------------------------------+---------+
+|     NAME      |      VERSION       |     STATE (DESIRED STATE)      | HEALTH  |
++---------------+--------------------+--------------------------------+---------+
+| app-azure     | N/A (0.3.0-15)     | uninstalled (uninstalled)      | good    |
+| console       | N/A (0.3.0-5)      | uninstalled (uninstalled)      | good    |
+| linuxdesktop  | N/A (0.3.0-10)     | uninstalled (uninstalled)      | good    |
+| modbusmaster  | N/A (3.5.3-11)     | uninstalled (uninstalled)      | good    |
+| tagservice    | N/A (0.2.4-14)     | uninstalled (uninstalled)      | good    |
+| thingspro-web | 0.3.0-1 (0.3.0-1)  | installing (ready) - importing | running |
+|               |                    | images...3% (2/3)              |         |
++---------------+--------------------+--------------------------------+---------+
 ```
 
 If web service is ready, the state will show `ready`.
@@ -89,7 +95,7 @@ Now, you can check device profile via API
 root@Moxa:~# curl -s https://127.0.0.1/api/v1/profile \
         -X GET \
         -H "Content-Type:application/json" \
-        -H "mx-api-token:$(cat /etc/mx-api-token)" -k | python -m json.tool
+        -H "mx-api-token:$(cat /etc/mx-api-token)" -k | json_pp
 {
     "deviceModelName": "UC-8112-LX-CG",
     "deviceType": "iiot-gateway",
@@ -126,9 +132,10 @@ root@Moxa:~# curl -s https://127.0.0.1/api/v1/profile \
 
 ## Acquire Data
 
-ThingsPro Edge have ability to extend functions by installing APPs. For example, we now install one southbound APP _Modbus_ for enabling data acquisition.
+ThingsPro Edge have ability to extend functions by installing APPs. We will start to do data acquisition by installing APP tagservice and modbusmaster.
 
 ```shell
+root@Moxa:~# appman app install tagservice
 root@Moxa:~# appman app install modbusmaster
 ```
 
@@ -141,28 +148,100 @@ root@Moxa:~# curl https://127.0.0.1/api/v1/tags/fieldbus/modbus/templates/iologi
         -X POST \
         -H "Content-Type:application/json" \
         -H "mx-api-token:$(cat /etc/mx-api-token)" -k \
-        -d @./iologik-e2242.json
+        -d @./iologik-e2242.json | json_pp
+{
+"templateName" : "iologik-e2242.json",
+   "tagList" : [
+      {
+         "type" : "uint16",
+         "pollingPeriodMs" : 1000,
+         "address" : 0,
+         "id" : "di0",
+         "op" : "read",
+         "quantity" : 1,
+         "function" : "read-coils",
+         "requestTimeoutMs" : 5000
+      },
+      ...
+      {
+         "pollingPeriodMs" : 1000,
+         "type" : "uint16",
+         "id" : "di3",
+         "address" : 3,
+         "function" : "read-coils",
+         "quantity" : 1,
+         "op" : "read",
+         "requestTimeoutMs" : 5000
+      }
+   ]
+}
 ```
 
-Add a device associating to the template, where `10.144.33.168` must be replaced to IP address of your computer that simulate a modbus device
-
-**FIXME: add computer screenshot to simulate modbus**
+Wait modbusmaster and tagservice are ready as following
 
 ```shell
-root@Moxa:~# curl https://127.0.0.1/api/v1/tags/fieldbus/modbus/devices/My_iologik-e2242 \
++---------------+---------------------+---------------------------+--------+
+|     NAME      |       VERSION       |   STATE (DESIRED STATE)   | HEALTH |
++---------------+---------------------+---------------------------+--------+
+| app-azure     | N/A (0.3.0-15)      | uninstalled (uninstalled) | good   |
+| console       | N/A (0.3.0-5)       | uninstalled (uninstalled) | good   |
+| linuxdesktop  | N/A (0.3.0-10)      | uninstalled (uninstalled) | good   |
+| modbusmaster  | 3.5.3-11 (3.5.3-11) | ready (ready)             | good   |
+| tagservice    | 0.2.4-14 (0.2.4-14) | ready (ready)             | good   |
+| thingspro-web | 0.3.0-1 (0.3.0-1)   | ready (ready)             | good   |
++---------------+---------------------+---------------------------+--------+
+```
+
+Add a device associating to the template, where `10.144.33.168` must be replaced to IP address of your computer that simulate a modbus device and `eth3` is the interface to the sumulator.
+
+```shell
+root@Moxa:~# curl https://127.0.0.1/api/v1/tags/fieldbus/modbus/device \
         -X POST \
         -H "Content-Type:application/json" \
         -H "mx-api-token:$(cat /etc/mx-api-token)" -k \
-        -d '{"name":"My_ioLogik-E2242","interface":"eth0","templateName":"iologik-e2242.json","host":"10.144.33.168","deviceId":0,"service":502}'
+        -d '{"name":"My_ioLogik-E2242","interface":"eth3","templateName":"iologik-e2242","host":"10.144.33.168","deviceId":0,"service":502}' | json_pp
+{
+   "service" : 502,
+   "protocol" : "modbus",
+   "host" : "10.144.32.107",
+   "name" : "My_ioLogik-E2242",
+   "id" : "05c3aa3a0ed445449586fa19e4d044e1",
+   "interface" : "eth0",
+   "hostName" : "modbusmaster_app_1",
+   "templateName" : "iologik-e2242.json",
+   "deviceId" : 0
+}
 ```
 
-You now can check device connection and status
-
-**FIXME: output**
+Check device list
 
 ```shell
-root@Moxa:~# mxfbcli -p modbus -a
+root@Moxa:~# curl https://127.0.0.1/api/v1/tags/fieldbus/modbus/devices \
+        -X GET \
+        -H "Content-Type:application/json" \
+        -H "mx-api-token:$(cat /etc/mx-api-token)" -k | json_pp
+{
+   "deviceList" : [
+      {
+         "id" : "5c09fae3e83845fb8459159389079deb",
+         "protocol" : "modbus",
+         "host" : "10.144.32.107",
+         "name" : "My_ioLogik-E2242",
+         "templateName" : "iologik-e2242.json",
+         "deviceId" : 0,
+         "interface" : "eth3",
+         "hostName" : "modbusmaster_app_1",
+         "service" : 502
+      }
+   ]
+}
 ```
+
+Then, you may install Modbus simulator. For example, we use [modrssim](https://sourceforge.net/projects/modrssim/). Open it and set protocol to TCP.
+
+![modbus simulator](assets/edge/modrssim.png)
+
+The number of `received/sent` should increase if connected.
 
 ### Collect Data
 
@@ -194,6 +273,10 @@ $ curl https://127.0.0.1/api/v1/tags/virtual \
 ```
 
 To subscribe data, we used a simple Python code to show
+
+FIXME: 1. merge https://github.com/MOXA-ISD/edge-internal-images/tree/master/armhf to https://github.com/MOXA-ISD/edge-internal-thingspro-dev/blob/master/Dockerfile
+FIXME: 2. add sample to tdk
+FIXME: 3. apt-get install libmxidaf-py; apt install python-pip; pip install --upgrade pip enum34
 
 ```python
 from libmxidaf_py import TagV2
@@ -257,11 +340,26 @@ int main()
 }
 ```
 
-We have provided corresponding shell command:
+```
+curl https://127.0.0.1/api/v1/tags/fieldbus/modbus/templates \
+        -X GET \
+        -H "Content-Type:application/json" \
+        -H "mx-api-token:$(cat /etc/mx-api-token)" -k | json_pp
 
-```shell
-root@Moxa:~# # read
-root@Moxa:~# mxfbcli -e My_ioLogik-E2242 -t di0 -r
-root@Moxa:~# # write
-root@Moxa:~# mxfbcli -e My_ioLogik-E2242 -t do0 -u 1
+curl https://127.0.0.1/api/v1/tags/fieldbus/modbus/device \
+        -X POST \
+        -H "Content-Type:application/json" \
+        -H "mx-api-token:$(cat /etc/mx-api-token)" -k \
+        -d '{"name":"My_ioLogik-E2242","interface":"eth3","templateName":"iologik-e2242.json","host":"10.144.32.107","deviceId":0,"service":502}' | json_pp
+
+curl https://127.0.0.1/api/v1/tags/fieldbus/modbus/devices \
+        -X GET \
+        -H "Content-Type:application/json" \
+        -H "mx-api-token:$(cat /etc/mx-api-token)" -k  | json_pp
+
+curl https://127.0.0.1/api/v1/tags/fieldbus/modbus/device \
+        -X DELETE \
+        -H "Content-Type:application/json" \
+        -H "mx-api-token:$(cat /etc/mx-api-token)" -k \
+        -d '{"name":"My_ioLogik-E2242","id":"05c3aa3a0ed445449586fa19e4d044e1"}'
 ```
