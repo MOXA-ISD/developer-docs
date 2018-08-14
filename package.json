@@ -53,7 +53,6 @@
   "lint-staged": {
     "*.{js,json,md,scss}": [
       "prettier --trailing-comma none --single-quote --print-width 120 --write",
-      "npm run lint-md",
       "git add"
     ]
   }
