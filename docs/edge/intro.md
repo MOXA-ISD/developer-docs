@@ -274,7 +274,7 @@ $ curl https://127.0.0.1/api/v1/tags/virtual \
 
 To subscribe data, we used a simple Python code to show
 
-FIXME: 1. merge https://github.com/MOXA-ISD/edge-internal-images/tree/master/armhf to https://github.com/MOXA-ISD/edge-internal-thingspro-dev/blob/master/Dockerfile
+FIXME: 1. merge [https://github.com/MOXA-ISD/edge-internal-images/tree/master/armhf](https://github.com/MOXA-ISD/edge-internal-images/tree/master/armhf) to [https://github.com/MOXA-ISD/edge-internal-thingspro-dev/blob/master/Dockerfile](https://github.com/MOXA-ISD/edge-internal-thingspro-dev/blob/master/Dockerfile)
 FIXME: 2. add sample to tdk
 FIXME: 3. apt-get install libmxidaf-py; apt install python-pip; pip install --upgrade pip enum34
 

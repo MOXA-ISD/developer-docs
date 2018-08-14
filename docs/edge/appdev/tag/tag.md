@@ -50,10 +50,10 @@ Be used to obtain tag list by the specific type `tag_type_t`.
 
 Parameters
 
-|Name|Description|
-|:--:|:----|
-|tags|A pointer to the tag list instance which is assigned value afterwards.|
-|type|the type of tag list, including `io`, `system`, `virtual`.|
+| Name | Description                                                            |
+| :--: | :--------------------------------------------------------------------- |
+| tags | A pointer to the tag list instance which is assigned value afterwards. |
+| type | the type of tag list, including `io`, `system`, `virtual`.             |
 
 Returns
 
@@ -67,9 +67,9 @@ Be used to obtain tag list in json format by the specific type `tag_type_t`.
 
 Parameters
 
-|Name|Description|
-|:--:|:----|
-|type|the type of tag list, including `io`, `system`, `virtual`.|
+| Name | Description                                                |
+| :--: | :--------------------------------------------------------- |
+| type | the type of tag list, including `io`, `system`, `virtual`. |
 
 Returns
 
@@ -83,10 +83,10 @@ Free memory that was allocated in `mxtag_list`.
 
 Parameters
 
-|Name|Description|
-|:--:|:----|
-|tags|A pointer to the tag list instance.|
-|type|the type of tag list, including `io`, `system`, `virtual`.|
+| Name | Description                                                |
+| :--: | :--------------------------------------------------------- |
+| tags | A pointer to the tag list instance.                        |
+| type | the type of tag list, including `io`, `system`, `virtual`. |
 
 Returns
 
@@ -147,15 +147,15 @@ None.
 
 Parameters
 
-|Name|Description|
-|:--:|:----|
-|tag|Instance of tag api.|
-|source_name|Source of tag in which the data comes from.|
-|tag_name|Name of tag.|
-|tag_ts|Timestamp at tag publishing.|
-|tag_unit|Unit of tag.|
-|data_type|Data type of tag [uint16, uint32, uint64, int16, int32, int64, float32, float64, string, boolean, bytearray]|
-|data_value|Value of tag.|
+|    Name     | Description                                                                                                    |
+| :---------: | :------------------------------------------------------------------------------------------------------------- |
+|     tag     | Instance of tag api.                                                                                           |
+| source_name | Source of tag in which the data comes from.                                                                    |
+|  tag_name   | Name of tag.                                                                                                   |
+|   tag_ts    | Timestamp at tag publishing.                                                                                   |
+|  tag_unit   | Unit of tag.                                                                                                   |
+|  data_type  | Data type of tag \[uint16, uint32, uint64, int16, int32, int64, float32, float64, string, boolean, bytearray\] |
+| data_value  | Value of tag.                                                                                                  |
 
 Returns
 
@@ -171,11 +171,11 @@ If the function succeeds, the return value is 0. Otherwise, 1 on failure.
 
 Parameters
 
-|Name|Description|
-|:--:|:----|
-|tag|Instance of tag api.|
-|source_name|Source of tag in which the data comes from.|
-|tag_name|Name of tag.|
+|    Name     | Description                                 |
+| :---------: | :------------------------------------------ |
+|     tag     | Instance of tag api.                        |
+| source_name | Source of tag in which the data comes from. |
+|  tag_name   | Name of tag.                                |
 
 Returns
 
@@ -189,11 +189,11 @@ If the function succeeds, the return value is 0. Otherwise, 1 on failure.
 
 Parameters
 
-|Name|Description|
-|:--:|:----|
-|tag|Instance of tag api.|
-|source_name|Source of tag in which the data comes from.|
-|tag_name|Name of tag.|
+|    Name     | Description                                 |
+| :---------: | :------------------------------------------ |
+|     tag     | Instance of tag api.                        |
+| source_name | Source of tag in which the data comes from. |
+|  tag_name   | Name of tag.                                |
 
 Returns
 

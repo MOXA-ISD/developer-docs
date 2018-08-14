@@ -15,9 +15,19 @@
       "path": "node_modules/cz-conventional-changelog"
     }
   },
+  "remarkConfig": {
+    "plugins": [
+      "remark-preset-lint-recommended",
+      [
+        "remark-lint-list-item-indent",
+        "space"
+      ]
+    ]
+  },
   "scripts": {
+    "lint-md": "remark docs",
     "start": "yarn --cwd ./website start",
-    "precommit": "lint-staged",
+    "precommit": "npm run lint-md && lint-staged",
     "commit": "git-cz",
     "commitmsg": "commitlint -e $GIT_PARAMS",
     "dotenv": "dotenv",
@@ -35,12 +45,15 @@
     "lint-staged": "^7.2.0",
     "markdown-pdf": "^9.0.0",
     "prettier": "1.14.0",
+    "remark-cli": "^5.0.0",
+    "remark-preset-lint-recommended": "^3.0.2",
     "semantic-release": "^15.9.3",
     "travis-deploy-once": "^5.0.1"
   },
   "lint-staged": {
     "*.{js,json,md,scss}": [
       "prettier --trailing-comma none --single-quote --print-width 120 --write",
+      "npm run lint-md",
       "git add"
     ]
   }

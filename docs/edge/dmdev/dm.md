@@ -80,7 +80,7 @@ Set the connection callback. This is called whenever the connection status has c
 
 - connection_callback
 
-  A callback function in the following form: void callback(DMSession *session, int result, int reason, void *user_context)
+  A callback function in the following form: void callback(DMSession \*session, int result, int reason, void \*user_context)
 
 ## Callback Parameters
 
@@ -104,7 +104,7 @@ Set the connection callback. This is called whenever the connection status has c
 
 ## set_twin_callback
 
-    void set_twin_callback(DMSession *session, int update_state, DMCLIENT_TWIN_CALLBACK twin_callback)
+    void set_twin_callback(DMSession \*session, int update_state, DMCLIENT_TWIN_CALLBACK twin_callback)
 
 Set the twin callback. This is called whenever a twin update is received.
 
@@ -120,7 +120,7 @@ Set the twin callback. This is called whenever a twin update is received.
 
 - twin_callback
 
-  A callback function in the following form: void callback(DMSession *session, const unsigned char *payload, void \*user_context)
+  A callback function in the following form: void callback(DMSession \*session, const unsigned char \*payload, void \*user_context)
 
 ## Callback Parameters
 
@@ -152,7 +152,7 @@ Set the command callback. This is called whenever a command is invoked.
 
 - command_callback
 
-  A callback function in the following form: int callback(DMSession *session, const unsigned char *command_name, const unsigned char *payload, unsigned char \*\*response, size_t *response_size, void \*user_context)
+  A callback function in the following form: int callback(DMSession \*session, const unsigned char \*command_name, const unsigned char \*payload, unsigned char \*\*response, size_t \*response_size, void \*user_context)
 
 ## Callback Parameters
 
@@ -230,7 +230,7 @@ Send reported state to device management service.
 
 - reported_callback
 
-  A callback function in the following form: void callback(DMSession *session, int status_code, void *user_context)
+  A callback function in the following form: void callback(DMSession \*session, int status_code, void \*user_context)
 
 - user_context
 
