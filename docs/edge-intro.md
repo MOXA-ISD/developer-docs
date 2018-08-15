@@ -7,7 +7,11 @@ ThingsPro Edge is an intelligent industrial IoT edge device to help you accelera
 
 ![system-overview](assets/edge/system-overview.png)
 
-**Southbound APP** acquires data from device and publishing data to any subcriber. It also listens direct command from northbound APP and response to the underlying devices. **Northbound APP** usually subscribes data from southbound APP and exports to the cloud. It comprises web interface, backend HTTP service and a daemon to configure, for example, which tags to be uploaded and collecting interval. **DATA CORE** is responsible to manage devices and tags. Southbound APP will be notified when a device registers to ThingsPro Edge with the protocol the southbound APP provieded which is introduced in Tag SDK. Web interface of northbound APP is needed to register to **WEB SERVER** that is a reverse proxy to sucure REST API. APP life cycle is managed by **APP SERVICE**. APP is container based and package by ThingsPro developent kit that will be introduced in APP development section.
+- **Southbound APP** acquires data from device and publishes to subcribers. It also listens direct command from northbound APP and response to the underlying devices.
+- **Northbound APP** usually subscribes data from southbound APP and exports to the cloud. It comprises web interface and backend HTTP service to configure which data to be uploaded and collecting interval. Besides, it has a daemon to subscribe data in real time.
+- **DATA CORE** is responsible to manage devices and tags. Southbound APP will be notified when a device registers to ThingsPro Edge with the protocol the southbound APP provieded. The design and implementation will be introduced in [Southbound SDK](edge-appdev-south).
+- Web interface of northbound APP is needed to register to **WEB SERVER** that is a reverse proxy to sucure REST API. APP life cycle is managed by **APP SERVICE**. APP is container based and package by ThingsPro [developent kit](edge-appdev-app).
+- **Device Management** makes the hardware to be managed by ThingsPro Edge and ThingsPro Server.
 
 ## Install ThingsPro Edge
 
@@ -266,17 +270,13 @@ root@Moxa:~# curl https://127.0.0.1/api/v1/tags/system \
 The last tag is **Virtual Tag**. It is used by APP(normaly a north APP) publishing virtual data which used by another APP after it streamlines real data from devices. The supported virtual tags list by following API
 
 ```shell
-$ curl https://127.0.0.1/api/v1/tags/virtual \
+root@Moxa:~# curl https://127.0.0.1/api/v1/tags/virtual \
         -X GET \
         -H "Content-Type:application/json" \
         -H "mx-api-token:$(cat /etc/mx-api-token)" -k
 ```
 
 To subscribe data, we used a simple Python code to show
-
-FIXME: 1. merge [https://github.com/MOXA-ISD/edge-internal-images/tree/master/armhf](https://github.com/MOXA-ISD/edge-internal-images/tree/master/armhf) to [https://github.com/MOXA-ISD/edge-internal-thingspro-dev/blob/master/Dockerfile](https://github.com/MOXA-ISD/edge-internal-thingspro-dev/blob/master/Dockerfile)
-FIXME: 2. add sample to tdk
-FIXME: 3. apt-get install libmxidaf-py; apt install python-pip; pip install --upgrade pip enum34
 
 ```python
 from libmxidaf_py import TagV2
@@ -296,67 +296,43 @@ tagv2.subscribe(
     "My_ioLogik-E2242",
     "di0"
 )
-
-tagv2 = TagV2.instance()
 ```
 
-The code publish data as following
+This sample is already packed as an APP. You can install by
 
-```python
-from libmxidaf_py import TagV2, Tag, Time, Value
-
-tagv2 = TagV2.instance()
-
-tagv2.publish (
-    "My_ioLogik-E2242",
-    "di0",
-    Tag(
-        Value(5.010),
-        Time.now(),
-        "dbm"
-    )
-)
+```shell
+root@Moxa:~# appman app install north-hello
 ```
 
-ThinsgPro Edge also provide capability to directly communicate with device. Here is a C sample for reference that reads IO tag directly
+Then open [https://<board-ip>/apps/north-hello/](https://<board-ip>/apps/north-hello/) to see the data which looks like
 
-```c
-int main()
-{
-    mxfb_t *fb = mxfb_new();
+![north sample](assets/edge/north-sample.jpg)
 
-    value_t value;
-    value_type_t value_type;
-    int rc = mxfb_read(
-        fb,
-        "My_ioLogik-E2242",     # device_name
-        "di0",                  # tag_name
-        10000,                  # timeout_ms
-        &value,
-        &value_type
-    );
-    if (rc == 0)
-        print_value(value, value_type);
-}
-```
+You can get source easily by `tdk`. Please refer to [Development Kit](edge-appdev-app).
 
-```
+### API Reference
+
+Get templates
+
+```shell
 curl https://127.0.0.1/api/v1/tags/fieldbus/modbus/templates \
         -X GET \
         -H "Content-Type:application/json" \
         -H "mx-api-token:$(cat /etc/mx-api-token)" -k | json_pp
+```
 
-curl https://127.0.0.1/api/v1/tags/fieldbus/modbus/device \
-        -X POST \
-        -H "Content-Type:application/json" \
-        -H "mx-api-token:$(cat /etc/mx-api-token)" -k \
-        -d '{"name":"My_ioLogik-E2242","interface":"eth3","templateName":"iologik-e2242.json","host":"10.144.32.107","deviceId":0,"service":502}' | json_pp
+Get devices
 
+```shell
 curl https://127.0.0.1/api/v1/tags/fieldbus/modbus/devices \
         -X GET \
         -H "Content-Type:application/json" \
         -H "mx-api-token:$(cat /etc/mx-api-token)" -k  | json_pp
+```
 
+Delete a device
+
+```shell
 curl https://127.0.0.1/api/v1/tags/fieldbus/modbus/device \
         -X DELETE \
         -H "Content-Type:application/json" \
