@@ -1,5 +1,5 @@
 ---
-id: tag
+id: edge-appdev-tag
 title: Tag SDK
 ---
 

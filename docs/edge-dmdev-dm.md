@@ -1,5 +1,5 @@
 ---
-id: dm
+id: edge-dmdev-dm
 title: DM SDK
 ---
 

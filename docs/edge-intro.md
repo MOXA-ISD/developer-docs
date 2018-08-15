@@ -1,5 +1,5 @@
 ---
-id: intro
+id: edge-intro
 title: Getting Started
 ---
 

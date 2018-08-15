@@ -1,5 +1,5 @@
 ---
-id: app
+id: edge-appdev-app
 title: Development Kit
 ---
 

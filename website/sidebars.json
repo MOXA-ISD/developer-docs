@@ -1,10 +1,10 @@
 {
   "edge": {
-    "Getting Started": ["edge/intro"],
-    "APP Development": ["edge/appdev/app/app", "edge/appdev/south/south", "edge/appdev/tag/tag"],
-    "Device Development": ["edge/dmdev/dm"]
+    "Getting Started": ["edge-intro"],
+    "APP Development": ["edge-appdev-app", "edge-appdev-south", "edge-appdev-tag"],
+    "Device Development": ["edge-dmdev-dm"]
   },
   "ui": {
-    "Getting Started": ["ui/intro"]
+    "Getting Started": ["ui-intro"]
   }
 }
