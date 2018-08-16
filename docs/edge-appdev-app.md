@@ -1,5 +1,5 @@
 ---
-id: app
+id: edge-appdev-app
 title: Development Kit
 ---
 
@@ -15,16 +15,18 @@ ThingsPro Development Kit(TDK) is a development toolkit used to create applicati
 Start ThingsPro Development Desktop
 
 ```shell
-$ docker run --name tdd -p 6080:80 -p 8000:8000 -v /:/host moxaisd/thingspro-dev-desktop:linux-amd64
+$ docker run --name tdd -p 6080:80 -p 8000:8000 -v /run/docker.sock:/host/run/docker.sock moxaisd/thingspro-dev-desktop:0.1-linux-amd64
 ```
 
 You can browse [http://127.0.0.1:6080](http://127.0.0.1:6080) now that show as following
 
 ![thingspro-dev-desktop](assets/edge/thingspro-dev-desktop.png)
 
+NOTES: If you are running this image in Virtual Machine (VM), you have to set port forwarding for port 6080 and 8000 in VM Manager. If you plan to compile ARM, you have to install `qemu-user-static` in VM, which run `apt-get install -y qemu-user-static` in Ubuntu.
+
 ## Create Hello World APP
 
-In this environment, open a LXTerminal by the menu in the left-bottom corner, then create a Hello World sample.
+In this environment, open a LXTerminal by the menu in the left-bottom corner -> System Tools, then create a Hello World sample.
 
 ```shell
 $ mkdir hello

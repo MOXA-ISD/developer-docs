@@ -1,5 +1,5 @@
 ---
-id: south
+id: edge-appdev-south
 title: Southbound SDK
 ---
 
