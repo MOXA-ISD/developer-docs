@@ -68,7 +68,7 @@ class HomeSplash extends React.Component {
         <PromoSection>
           <img src="img/LOGO_ThingsPro_r.png" id="landing-logo" alt="ThingsPro" />
           <ProjectTitle />
-          <Button href="docs/edge/intro">Getting Started</Button>
+          <Button href="docs/edge-intro">Getting Started</Button>
           <p className="landing-link">
             <small>
               You can fill out the form to try out ThingsPro. <a href=".">Try out now!</a>
@@ -142,8 +142,8 @@ const LastCTA = props => (
     <h2>Getting started with developer document</h2>
     {/* <p className="text-max-width">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, praesentium. Temporibus eius necessitatibus odio vero dicta magni quasi commodi consequatur.</p> */}
     <div className="button-box">
-      <Button href="docs/edge/intro">Edge Docs</Button>
-      <Button href="docs/ui/intro">App UI Docs</Button>
+      <Button href="docs/edge-intro">Edge Docs</Button>
+      <Button href="docs/ui-intro">App UI Docs</Button>
     </div>
   </Container>
 );

@@ -48,3 +48,14 @@ After preparing develop environment, you now have a skeleton to work from for yo
 We use angular to build this app UI starter if you are not familiar with angular or UI development, we provide you to generate web UI by config.
 
 > The `apps/tp-app/src/assets/tp-app.resource.json` file is a config which can generate a form automatically by following [config instruction](./ui-app-component-config.md).
+
+## Getting Started
+
+1. Import Project
+   ![Import Project](assets/ui/import-project.gif)
+
+2. Start Development Server
+   ![start dev server](assets/ui/start-dev-server.gif)
+
+3. Development with Config
+   ![modify ui config](assets/ui/dev-with-config.gif)
