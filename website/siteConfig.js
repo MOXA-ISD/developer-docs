@@ -14,7 +14,7 @@ const users = [
     caption: 'User1',
     // You will need to prepend the image path with your baseUrl
     // if it is not '/', like: '/test-site/img/docusaurus.svg'.
-    image: '/img/docusaurus.svg',
+    image: '/img/icon_logo1.svg',
     infoLink: 'https://www.facebook.com',
     pinned: true
   }
@@ -22,7 +22,7 @@ const users = [
 
 const siteConfig = {
   title: 'ThingsPro' /* title for your website */,
-  tagline: 'A website for ThingsPro developer',
+  tagline: 'Boost your IIoT development with ThingsPro',
   url: 'https://moxa-isd.github.io' /* your website url */,
   baseUrl: '/developer-docs/' /* base url for your project */,
   // For github.io type URLs, you would set the url and baseUrl like:
@@ -48,27 +48,21 @@ const siteConfig = {
   // users,
 
   /* path to images for header/footer */
-  headerIcon: 'img/docusaurus.svg',
-  footerIcon: 'img/docusaurus.svg',
+  headerIcon: 'img/icon_logo1.svg',
+  footerIcon: 'img/icon_logo1.svg',
   favicon: 'img/favicon.png',
 
   /* colors for website */
   colors: {
     primaryColor: '#008787',
-    secondaryColor: '#FA943E'
+    secondaryColor: '#006D6D'
   },
 
   /* custom fonts for website */
-  /*fonts: {
-    myFont: [
-      "Times New Roman",
-      "Serif"
-    ],
-    myOtherFont: [
-      "-apple-system",
-      "system-ui"
-    ]
-  },*/
+  fonts: {
+    myFont: ['Roboto', 'Helvetica Neue', 'Times New Roman', 'Serif'],
+    myOtherFont: ['-apple-system', 'system-ui']
+  },
 
   // This copyright info is used in /core/Footer.js and blog rss/atom feeds.
   copyright: 'Copyright © ' + new Date().getFullYear() + ' Moxa Inc.',
@@ -85,8 +79,8 @@ const siteConfig = {
   onPageNav: 'separate',
 
   /* Open Graph and Twitter card images */
-  ogImage: 'img/docusaurus.png',
-  twitterImage: 'img/docusaurus.png',
+  // ogImage: 'img/docusaurus.png',
+  // twitterImage: 'img/docusaurus.png',
 
   cleanUrl: true
 

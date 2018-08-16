@@ -29,11 +29,9 @@ function pageUrl(page, language) {
 class Button extends React.Component {
   render() {
     return (
-      <div className="pluginWrapper buttonWrapper">
-        <a className="button" href={this.props.href} target={this.props.target}>
-          {this.props.children}
-        </a>
-      </div>
+      <a className="button" href={this.props.href} target={this.props.target}>
+        {this.props.children}
+      </a>
     );
   }
 }
@@ -44,9 +42,7 @@ Button.defaultProps = {
 
 const SplashContainer = props => (
   <div className="homeContainer">
-    <div className="homeSplashFade">
-      <div className="wrapper homeWrapper">{props.children}</div>
-    </div>
+    <div className="wrapper homeWrapper">{props.children}</div>
   </div>
 );
 
@@ -56,18 +52,11 @@ const Logo = props => (
   </div>
 );
 
-const ProjectTitle = props => (
-  <h2 className="projectTitle">
-    {siteConfig.title}
-    <small>{siteConfig.tagline}</small>
-  </h2>
-);
+const ProjectTitle = props => <h2 className="projectTitle">{siteConfig.tagline}</h2>;
 
 const PromoSection = props => (
-  <div className="section promoSection">
-    <div className="promoRow">
-      <div className="pluginRowBlock">{props.children}</div>
-    </div>
+  <div className="section">
+    <div className="promoRow">{props.children}</div>
   </div>
 );
 
@@ -76,89 +65,87 @@ class HomeSplash extends React.Component {
     let language = this.props.language || '';
     return (
       <SplashContainer>
-        <Logo img_src={imgUrl('docusaurus.svg')} />
-        <div className="inner">
+        <PromoSection>
+          <img src="img/LOGO_ThingsPro_r.png" id="landing-logo" alt="ThingsPro" />
           <ProjectTitle />
-          <PromoSection>
-            <Button href="#try">Try It Out</Button>
-            {/* <Button href={docUrl('doc1.html', language)}>Example Link</Button>
-            <Button href={docUrl('doc2.html', language)}>Example Link 2</Button> */}
-          </PromoSection>
-        </div>
+          <Button href="docs/edge/intro">Getting Started</Button>
+          <p className="landing-link">
+            <small>
+              You can fill out the form to try out ThingsPro. <a href=".">Try out now!</a>
+            </small>
+          </p>
+        </PromoSection>
       </SplashContainer>
     );
   }
 }
 
 const Block = props => (
-  <Container padding={['bottom', 'top']} id={props.id} background={props.background}>
+  <Container id={props.id} background={props.background}>
     <GridBlock align="center" contents={props.children} layout={props.layout} />
   </Container>
 );
 
 const Features = props => (
-  <Block layout="fourColumn">
-    {[
-      {
-        content: 'This is the content of my feature',
-        image: imgUrl('docusaurus.svg'),
-        imageAlign: 'top',
-        title: 'Feature One'
-      },
-      {
-        content: 'The content of my second feature',
-        image: imgUrl('docusaurus.svg'),
-        imageAlign: 'top',
-        title: 'Feature Two'
-      }
-    ]}
-  </Block>
-);
-
-const FeatureCallout = props => (
-  <div className="productShowcaseSection paddingBottom" style={{ textAlign: 'center' }}>
-    <h2>Feature Callout</h2>
-    <MarkdownBlock>These are features of this project</MarkdownBlock>
-  </div>
-);
-
-const LearnHow = props => (
-  <Block background="light">
-    {[
-      {
-        content: 'Talk about learning how to use this',
-        image: imgUrl('docusaurus.svg'),
-        imageAlign: 'right',
-        title: 'Learn How'
-      }
-    ]}
-  </Block>
+  <Container className="features-section">
+    <h2>Key features of ThingsPro</h2>
+    <Block layout="threeColumn">
+      {[
+        {
+          title: 'Manage industrial IoT devices',
+          content: '',
+          image: imgUrl('features01.svg'),
+          imageAlign: 'top',
+          imageAlt: ''
+        },
+        {
+          title: 'Create App to connect devices',
+          content: '',
+          image: imgUrl('features02.svg'),
+          imageAlign: 'top',
+          imageAlt: ''
+        },
+        {
+          title: 'Experience customized ThingsPro',
+          content: '',
+          image: imgUrl('features03.svg'),
+          imageAlign: 'top',
+          imageAlt: ''
+        }
+      ]}
+    </Block>
+  </Container>
 );
 
 const TryOut = props => (
-  <Block id="try">
-    {[
-      {
-        content: 'Talk about trying this out',
-        image: imgUrl('docusaurus.svg'),
-        imageAlign: 'left',
-        title: 'Try it Out'
-      }
-    ]}
-  </Block>
+  <Container className="try-out-section">
+    <div className="img-block">
+      <img src="./img/19678105_retouch1-exp2_mrg.png" alt="try it out" />
+    </div>
+    <div className="text-block">
+      <h2>Try it out</h2>
+      <p>
+        Apply for an account and try ThingsPro <strong>for free</strong> now!
+        <br />
+        The trial is full function for you for evaluation. Explore ThingsPro at your own pace and feedback is welcomed.
+      </p>
+      <div className="button-box">
+        <Button href=".">Fill out the Form</Button>
+      </div>
+    </div>
+    <div className="clearfix" />
+  </Container>
 );
 
-const Description = props => (
-  <Block background="dark">
-    {[
-      {
-        content: 'This is another description of how this project is useful',
-        image: imgUrl('docusaurus.svg'),
-        imageAlign: 'right',
-        title: 'Description'
-      }
-    ]}
-  </Block>
+const LastCTA = props => (
+  <Container className="last-cta-section">
+    <h2>Getting started with developer document</h2>
+    {/* <p className="text-max-width">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, praesentium. Temporibus eius necessitatibus odio vero dicta magni quasi commodi consequatur.</p> */}
+    <div className="button-box">
+      <Button href="docs/edge/intro">Edge Docs</Button>
+      <Button href="docs/ui/intro">App UI Docs</Button>
+    </div>
+  </Container>
 );
 
 const Showcase = props => {
@@ -198,12 +185,10 @@ class Index extends React.Component {
     return (
       <div>
         <HomeSplash language={language} />
-        <div className="mainContainer">
+        <div className="">
           <Features />
-          <FeatureCallout />
-          <LearnHow />
           <TryOut />
-          <Description />
+          <LastCTA />
           <Showcase language={language} />
         </div>
       </div>
