@@ -1,7 +1,7 @@
 {
   "name": "developer-docs-site",
-  "version": "0.0.0",
-  "description": "Developer Site",
+  "version": "0.0.1",
+  "description": "ThingsPro v3 Developer Site",
   "private": true,
   "scripts": {
     "examples": "docusaurus-examples",
