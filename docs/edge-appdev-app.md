@@ -1,17 +1,7 @@
 ---
 id: edge-appdev-app
-title: ThingsPro Development Kit
+title: APP Development Kit
 ---
-
-ThingsPro Development Kit(TDK) is a development toolkit used to create application and pack it for MOXA ThingsPro Edge. The Application package is called MPKG (MOXA package), which is extended Docker and Docker Compose. Software that published by Docker now is easily to publish to ThingsPro Edge too.
-In this document, we will introduce the method to develop and verify a simple hello application for ThinsgPro Edge via TDK.
-
-## Prerequisite
-
-- To develop a ThingsPro APP
--- Windows/OSX/Linux computer with [Docker ≥ 18.03](https://docs.docker.com/install/)
-- To run your APP
--- Hardware withh ThingsPro v3 Edge preinstalled (for example: UC-8100 series)
 
 ## STEP 1: Prepare Development Environment
 
