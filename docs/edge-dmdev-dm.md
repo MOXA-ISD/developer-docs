@@ -1,6 +1,6 @@
 ---
 id: edge-dmdev-dm
-title: DM SDK
+title: Device Management Development
 ---
 
 ## Introduction
