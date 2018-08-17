@@ -1,16 +1,19 @@
 ---
 id: edge-appdev-app
-title: Development Kit
+title: ThingsPro Development Kit
 ---
 
-ThingsPro Development Kit(TDK) is a development toolkit used to create application and pack it for MOXA ThingsPro Edge. The Application package is called MPKG (MOXA package), which is extended Docker and Docker Compose. Software that published by Docker now is easily to publish to ThingsPro Edge too. In this document, we will introduce develop and verify a simple hello application for ThinsgPro Edge via TDK.
+ThingsPro Development Kit(TDK) is a development toolkit used to create application and pack it for MOXA ThingsPro Edge. The Application package is called MPKG (MOXA package), which is extended Docker and Docker Compose. Software that published by Docker now is easily to publish to ThingsPro Edge too.
+In this document, we will introduce the method to develop and verify a simple hello application for ThinsgPro Edge via TDK.
 
 ## Prerequisite
 
-- Windows/OSX/Linux computer with [Docker ≥ 18.03](https://docs.docker.com/install/)
-- MOXA UC-8100 series with ThingsPro v3 preinstalled
+- To develop a ThingsPro APP
+-- Windows/OSX/Linux computer with [Docker ≥ 18.03](https://docs.docker.com/install/)
+- To run your APP
+-- Hardware withh ThingsPro v3 Edge preinstalled (for example: UC-8100 series)
 
-## Prepare Development Environment
+## STEP 1: Prepare Development Environment
 
 Start ThingsPro Development Desktop
 
@@ -24,7 +27,7 @@ You can browse [http://127.0.0.1:6080](http://127.0.0.1:6080) now that show as f
 
 NOTES: If you are running this image in Virtual Machine (VM), you have to set port forwarding for port 6080 and 8000 in VM Manager. If you plan to compile ARM, you have to install `qemu-user-static` in VM, which run `apt-get install -y qemu-user-static` in Ubuntu.
 
-## Create Hello World APP
+## STEP 2: Create a Hello World APP
 
 In this environment, open a LXTerminal by the menu in the left-bottom corner -> System Tools, then create a Hello World sample.
 
@@ -63,7 +66,7 @@ After initializing successfully, the file structure looks like
 
 [Dockerfile](https://docs.docker.com/compose/compose-file/) describe how the docker image is built, and [docker-compose.yml](https://docs.docker.com/compose/compose-file/) defines running multi-container Docker application. `metadata.yml` defines how it works and shows in APP Market of ThingsPro Edge. ThingsPro Edge has a web server in front of all APPs. APP has to define which pages and any RESTful APIs expose to exterior in [nginx.conf](https://nginx.org/en/docs/). src is implementation of this APP.
 
-## Build
+## STEP 3: Build APP
 
 Build the program as a Docker image
 
@@ -91,7 +94,7 @@ Pack
     INFO[0007] Success!
     INFO[0007] hello_0.1.0_armhf.mpkg 23.59 MB
 
-## Deploy
+## STEP 4: Deploy APP
 
 Start a http server to provide applications
 
@@ -141,7 +144,7 @@ After state is ready, browse your application at https://<board_ip>/apps/hello/
 
 Congrats! You are successful to complete your first ThingsPro APP.
 
-## Troubleshooting
+## Appendix: Troubleshooting
 
 **How do I check installation procedure in detail?**
 
