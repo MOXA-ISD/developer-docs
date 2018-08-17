@@ -1,21 +1,24 @@
 ---
 id: edge-intro
-title: Getting Started XXXXX
+title: Getting Started
 ---
 
-ThingsPro Edge is an intelligent industrial IoT edge device to help you accelerate development of your IIoT applications and create a smarter field site. ThingsPro Edge extends connectivity for data acquisition by APPs as shown in following image.
+ThingsPro Edge is an intelligent industrial IoT edge device to help you accelerate the development of your IIoT applications and create a smarter field site. ThingsPro Edge extends connectivity for data acquisition by APPs
+This document will give you an overview and steps to create an APP running on top of ThingsPro version 3 and after.
 
 ![system-overview](assets/edge/system-overview.png)
 
-- **Southbound APP** acquires data from device and publishes to subcribers. It also listens direct command from northbound APP and response to the underlying devices.
-- **Northbound APP** usually subscribes data from southbound APP and exports to the cloud. It comprises web interface and backend HTTP service to configure which data to be uploaded and collecting interval. Besides, it has a daemon to subscribe data in real time.
-- **DATA CORE** is responsible to manage devices and tags. Southbound APP will be notified when a device registers to ThingsPro Edge with the protocol the southbound APP provieded. The design and implementation will be introduced in [Southbound SDK](edge-appdev-south).
+- **Southbound APP** usually to acquires data from field devices, like sensors, smart meters and then publishes the data to subcribers. It also listens direct command from other APP and routes to the underlying devices.
+- **Northbound APP** usually subscribes data from the publisher and then exports to the cloud. It also comprises web interface and backend HTTP service to configure which data to be uploaded and collecting interval. Besides, it has a daemon to subscribe data in real time.
+- **DATA CORE** is responsible to manage these field devices and tags. APPs will be notified when a device registers to ThingsPro Edge with the protocol the southbound APP provieded. The design and implementation will be introduced in [Southbound SDK](edge-appdev-south).
 - Web interface of northbound APP is needed to register to **WEB SERVER** that is a reverse proxy to sucure REST API. APP life cycle is managed by **APP SERVICE**. APP is container based and package by ThingsPro [developent kit](edge-appdev-app).
 - **Device Management** makes the hardware to be managed by ThingsPro Edge and ThingsPro Server.
 
-## Install ThingsPro Edge
+Following is an typical data acquisition example with this scenario: a MODBUS/TCP master APP to poll data from field device and then export the data to the cloud:
 
-We provide a single command to install ThingsPro Edge in MOXA hardware by run following command as root
+## STEP 1: Install ThingsPro Edge
+
+### 1.1. A single command is used to install ThingsPro Edge in MOXA hardware, be sure to run it with root
 
 ```shell
 root@Moxa:~# wget -O- http://repo.moxa.online/static/v3/edge/dists/v0.3.0/install.sh | sh -s $PRODUCT_NAME
@@ -25,12 +28,12 @@ root@Moxa:~# wget -O- http://repo.moxa.online/static/v3/edge/dists/v0.3.0/instal
 **********************************************************
 ```
 
-lurrently Supported Products:
+Currently supported products are:
 
-- uc8112-lx-cg
-- mc1121
+- UC8112-lx-cg
+- MC1121
 
-You may also find the up-to-date product list by
+You may also find the up-to-date product list by executing:
 
 ```shell
 root@Moxa:~# wget -O- -q http://repo.moxa.online/static/v3/edge/dists/v0.3.0/install.sh | sh
@@ -40,13 +43,13 @@ products:
   - uc8112-lx-cg
 ```
 
-Start ThingsPro Edge
+### 1.2. Start ThingsPro Edge
 
 ```shell
 root@Moxa:~# service thingspro-edge start
 ```
 
-## Install API and Web Service
+## STEP 2: Install Edge Web Service
 
 ThingsPro Edge provides RESTful API for management that is listed in [ThingsPro Edge OAPI server](https://thingspro-edge-oapi.netlify.com/). To enable API service, we have to install ThingsPro Web APP. First, update APPs index
 
@@ -66,7 +69,7 @@ I: updating package thingspro-web_0.3.0-1_amd64.mpkg
 I: updating package thingspro-web_0.3.0-1_armhf.mpkg
 ```
 
-Install thingspro-web
+### 2.1. Install thingspro-web
 
 ```shell
 root@Moxa:~# appman app install thingspro-web
@@ -91,6 +94,7 @@ root@Moxa:~# appman app ls
 +---------------+--------------------+--------------------------------+---------+
 ```
 
+### 2.2. Run thingspro-web service
 If web service is ready, the state will show `ready`.
 
 Now, you can check device profile via API
@@ -134,16 +138,17 @@ root@Moxa:~# curl -s https://127.0.0.1/api/v1/profile \
 }
 ```
 
-## Acquire Data
+## STEP 3: Polling Sensor Data Using MODBUS/TCP master APP
 
-ThingsPro Edge have ability to extend functions by installing APPs. We will start to do data acquisition by installing APP tagservice and modbusmaster.
+ThingsPro Edge have ability to extend functions by installing APPs. We will start to do data acquisition by installing and MODBUS/TCP  master APP.
 
+### 3.1. Install related services
 ```shell
 root@Moxa:~# appman app install tagservice
 root@Moxa:~# appman app install modbusmaster
 ```
 
-### Add Devices
+### 3.2. Add MODBUS slave devices and define tags to read
 
 Before creating a device, we must add a template that defines data elements(tags). The template can be download at [here](assets/edge/iologik-e2242.json)
 
@@ -247,9 +252,9 @@ Then, you may install Modbus simulator. For example, we use [modrssim](https://s
 
 The number of `received/sent` should increase if connected.
 
-### Collect Data
+### Tag Types
 
-In previous section, we add a device and define its data element that called **IO Tag** in ThingsPro Edge. IO Tag can be listed by API
+In previous section, we add a device and define its data element that called **I/O Tag** in ThingsPro Edge. I/O Tag can be listed by API
 
 ```shell
 root@Moxa:~# curl https://127.0.0.1/api/v1/tags/fieldbus \
@@ -276,7 +281,8 @@ root@Moxa:~# curl https://127.0.0.1/api/v1/tags/virtual \
         -H "mx-api-token:$(cat /etc/mx-api-token)" -k
 ```
 
-To subscribe data, we used a simple Python code to show
+## STEP 4: Read and display the tag data using Hello APP
+To subscribe data, we used a simple Hello APP wirtten in Python code to show the data
 
 ```python
 from libmxidaf_py import TagV2
@@ -310,7 +316,8 @@ Then open [https://<board-ip>/apps/north-hello/](https://<board-ip>/apps/north-h
 
 You can get source easily by `tdk`. Please refer to [Development Kit](edge-appdev-app).
 
-### API Reference
+## Appendix
+### Web Service API Reference
 
 Get templates
 
