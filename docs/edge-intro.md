@@ -18,7 +18,8 @@ Following is an typical data acquisition example with this scenario: a MODBUS/TC
 
 ## STEP 1: Install ThingsPro Edge
 
-### 1.1. A single command is used to install ThingsPro Edge in MOXA hardware, be sure to run it with root
+### 1.1. Install ThingsPro Edge
+A single command is used to install ThingsPro Edge in MOXA hardware, be sure to run it with root
 
 ```shell
 root@Moxa:~# wget -O- http://repo.moxa.online/static/v3/edge/dists/v0.3.0/install.sh | sh -s $PRODUCT_NAME
@@ -49,7 +50,7 @@ products:
 root@Moxa:~# service thingspro-edge start
 ```
 
-## STEP 2: Install Edge Web Service
+## STEP 2: Install ThingsPro Edge Web Service
 
 ThingsPro Edge provides RESTful API for management that is listed in [ThingsPro Edge OAPI server](https://thingspro-edge-oapi.netlify.com/). To enable API service, we have to install ThingsPro Web APP. First, update APPs index
 
@@ -69,7 +70,7 @@ I: updating package thingspro-web_0.3.0-1_amd64.mpkg
 I: updating package thingspro-web_0.3.0-1_armhf.mpkg
 ```
 
-### 2.1. Install thingspro-web
+### 2.1. Install thingspro-web service
 
 ```shell
 root@Moxa:~# appman app install thingspro-web
@@ -142,7 +143,7 @@ root@Moxa:~# curl -s https://127.0.0.1/api/v1/profile \
 
 ThingsPro Edge have ability to extend functions by installing APPs. We will start to do data acquisition by installing and MODBUS/TCP  master APP.
 
-### 3.1. Install related services
+### 3.1. Install related APP or service
 ```shell
 root@Moxa:~# appman app install tagservice
 root@Moxa:~# appman app install modbusmaster
@@ -281,7 +282,7 @@ root@Moxa:~# curl https://127.0.0.1/api/v1/tags/virtual \
         -H "mx-api-token:$(cat /etc/mx-api-token)" -k
 ```
 
-## STEP 4: Read and display the tag data using Hello APP
+## STEP 4: Create Hello APP to read and display the tag data
 To subscribe data, we used a simple Hello APP wirtten in Python code to show the data
 
 ```python
@@ -317,7 +318,7 @@ Then open [https://<board-ip>/apps/north-hello/](https://<board-ip>/apps/north-h
 You can get source easily by `tdk`. Please refer to [Development Kit](edge-appdev-app).
 
 ## Appendix
-### Web Service API Reference
+### I.Web Service API Reference
 
 Get templates
 
