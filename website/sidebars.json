@@ -1,8 +1,9 @@
 {
   "edge": {
     "Getting Started": ["edge-intro"],
+    "ThingsPro Development Kit": ["edge-dev"],
     "APP Development": ["edge-appdev-app", "edge-appdev-south", "edge-appdev-tag"],
-    "Device Management": ["edge-dmdev-dm"]
+    "Device Management Development": ["edge-dmdev-dm"]
   },
   "ui": {
     "Getting Started": ["ui-intro", "ui-app-dev", "ui-app-production", "ui-app-component-config"]
