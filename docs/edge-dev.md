@@ -9,13 +9,13 @@ ThingsPro Development Kit(TDK) is a development toolkit used to create applicati
 ### ThingsPro APP Development
 
 - To develop a ThingsPro APP, you need to have:
--- Windows/OSX/Linux computer with [Docker ≥ 18.03](https://docs.docker.com/install/)
+    Windows/OSX/Linux computer with [Docker ≥ 18.03](https://docs.docker.com/install/)
 - To run and debug:
--- Hardware withh ThingsPro v3 Edge preinstalled (for example: UC-8100 series)
+    Hardware withh ThingsPro v3 Edge preinstalled (for example: UC-8100 series)
 
 ### Device Management Development
-- To port ThingsPro Edge to run on different hardware platform, you need have:
--- Windows/OSX/Linux computer with [Docker ≥ 18.03](https://docs.docker.com/install/)
+- To make ThingsPro Edge support your specific peripheral configuration, you need have:
+    Windows/OSX/Linux computer with [Docker ≥ 18.03](https://docs.docker.com/install/)
 - To run and debug:
--- The target hardware with ThingsPro v3 Edge preinstalled (for example: UC-8100 series)
+    The target hardware with ThingsPro v3 Edge preinstalled (for example: UC-8100 series)
 
