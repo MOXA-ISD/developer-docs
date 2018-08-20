@@ -1,11 +1,11 @@
 {
   "edge": {
-    "Getting Started": ["edge-intro"],
-    "ThingsPro Development Kit": ["edge-dev"],
-    "APP Development": ["edge-appdev-app", "edge-appdev-south", "edge-appdev-tag"],
-    "Device Management Development": ["edge-dmdev-dm"]
+    "1.Getting Started": ["edge-intro"],
+    "2.ThingsPro Development Kit": ["edge-dev"],
+    "3.APP Development": ["edge-appdev-app", "edge-appdev-south", "edge-appdev-tag"],
+    "4.Device Management Development": ["edge-dmdev-dm"]
   },
   "ui": {
-    "Getting Started": ["ui-intro", "ui-app-dev", "ui-app-production", "ui-app-component-config"]
+    "1.Getting Started": ["ui-intro", "ui-app-dev", "ui-app-production", "ui-app-component-config"]
   }
 }
