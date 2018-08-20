@@ -1,6 +1,6 @@
 pipeline:
   checkout:
-    image: docker.moxa.online/build/base:jessie
+    image: docker.moxa.online/build/base:stretch
     commands:
       - git checkout --track -b ${DRONE_BRANCH} origin/${DRONE_BRANCH}
       - git merge ${CI_COMMIT_BRANCH}
@@ -11,17 +11,39 @@ pipeline:
         exclude: [ master ]
       local: false
 
-  upload_doc:
-    image: docker.moxa.online/build/base:jessie
-    environment:
-      - DOC_TARGET=/mnt/storage/repo/static/v3/edge/doc
-    commands:
-      #FIXME - rm -rf $${DOC_TARGET}
-      - mkdir -p $${DOC_TARGET}
-      - cp -r ./* $${DOC_TARGET}/
-      - |
-        sed -i "s#baseUrl:.*#baseUrl: '/',#" $${DOC_TARGET}/website/siteConfig.js
+  restore_cache:
+    image: drillster/drone-volume-cache
+    restore: true
+    mount:
+      - .yarn-amd64-jessie
     when:
       event: [ push, pull_request ]
     volumes:
-      - /mnt/storage:/mnt/storage:z
+      - /var/tmp:/cache
+
+  upload_doc:
+    image: docker.moxa.online/build/nodejs:stretch
+    pull: true
+    commands: |
+      . /root/.bashrc;
+      useradd -ms /bin/bash docser;
+      apt-get update && apt-get install -y rsync;
+      sed -i "s#baseUrl:.*#baseUrl: '/',#" ./website/siteConfig.js;
+      yarn;
+      yarn create:version develop;
+      cd website && yarn build;
+      su docser -c "rsync -a build/developer-docs/ /mnt/docs";
+    when:
+      event: [ push, pull_request ]
+    volumes:
+      - /mnt/storage/repo/static/developer-docs:/mnt/docs:z
+
+  restore_cache:
+    image: drillster/drone-volume-cache
+    rebuild: true
+    mount:
+      - .yarn-amd64-jessie
+    when:
+      event: [ push, pull_request ]
+    volumes:
+      - /var/tmp:/cache
