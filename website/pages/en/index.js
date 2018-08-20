@@ -71,7 +71,10 @@ class HomeSplash extends React.Component {
           <Button href="docs/edge-intro">Getting Started</Button>
           <p className="landing-link">
             <small>
-              You can fill out the form to try out ThingsPro. <a href=".">Try out now!</a>
+              You can fill out the form to try ThingsPro for FREE.{' '}
+              <a href="http://portal.thingspro.io/register" target="_balnk">
+                Try out now!
+              </a>
             </small>
           </p>
         </PromoSection>
@@ -130,7 +133,9 @@ const TryOut = props => (
         The trial is full function for you for evaluation. Explore ThingsPro at your own pace and feedback is welcomed.
       </p>
       <div className="button-box">
-        <Button href=".">Fill out the Form</Button>
+        <Button href="http://portal.thingspro.io/" target="_blank">
+          Free Taial
+        </Button>
       </div>
     </div>
     <div className="clearfix" />
