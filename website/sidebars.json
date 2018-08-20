@@ -6,6 +6,6 @@
     "4.Device Management Development": ["edge-dmdev-dm"]
   },
   "ui": {
-    "1.Getting Started": ["ui-intro", "ui-app-dev", "ui-app-production", "ui-app-component-config"]
+    "1.Getting Started": ["ui-intro", "ui-app-dev", "ui-app-component-config"]
   }
 }
