@@ -31,8 +31,8 @@ root@Moxa:~# wget -O- http://repo.moxa.online/static/v3/edge/dists/v0.3.0/instal
 
 Currently supported products are:
 
-- UC8112-lx-cg
-- MC1121
+- uc8112-lx-cg
+- mc1121
 
 You may also find the up-to-date product list by executing:
 
