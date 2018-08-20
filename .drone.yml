@@ -15,7 +15,7 @@ pipeline:
     image: drillster/drone-volume-cache
     restore: true
     mount:
-      - .yarn-amd64-jessie
+      - .yarn-amd64-stretch
     when:
       event: [ push, pull_request ]
     volumes:
@@ -33,6 +33,7 @@ pipeline:
       yarn create:version develop;
       cd website && yarn build;
       su docser -c "rsync -a build/developer-docs/ /mnt/docs";
+      echo -e "\033[0;32mSUCCESS!!\033[0m";
     when:
       event: [ push, pull_request ]
     volumes:
@@ -42,7 +43,7 @@ pipeline:
     image: drillster/drone-volume-cache
     rebuild: true
     mount:
-      - .yarn-amd64-jessie
+      - .yarn-amd64-stretch
     when:
       event: [ push, pull_request ]
     volumes:
