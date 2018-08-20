@@ -39,7 +39,7 @@ pipeline:
     volumes:
       - /mnt/storage/repo/static/developer-docs:/mnt/docs:z
 
-  restore_cache:
+  rebuild_cache:
     image: drillster/drone-volume-cache
     rebuild: true
     mount:
