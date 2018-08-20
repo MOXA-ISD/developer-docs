@@ -59,3 +59,9 @@ We use angular to build this app UI starter if you are not familiar with angular
 
 3. Development with Config
    ![modify ui config](assets/ui/dev-with-config.gif)
+
+4. Build App UI
+   ![Build app ui](assets/ui/build-app-ui.gif)
+
+5. Pack App with UI
+   When build app finished, you can put all files which in the `dist/apps/app/*` into following path `src/templates/` which is introduced in [STEP: 3 Build App](./edge-appdev-app/#step-3-build-app).
