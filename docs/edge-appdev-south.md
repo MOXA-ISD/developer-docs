@@ -99,15 +99,19 @@ Example:
 
 ## Controller Service - fieldbus controller
 
-1. Execute Fieldbus Controller as a routine service in your app container
+1. Install Fieldbus Controller
+```shell
+apt-get install mxfieldbus-controller
+```
+2. Execute Fieldbus Controller as a routine service in your app container
 
 ```shell
-# arg1: bundle.json folder path, arg2: protocol.json file path
-./fbcontroller ./ ./protocol.json
+# arg: protocol.json file path
+./fbcontroller ./protocol.json
 ```
 
-2. At the beginning, Controller registers _protocol.json_ to Tag service app to notify a new protocol app is added in the system.
-3. Now, Controller starts to receive Tag Service's APIs and handle protocol's Device and Tags Configuration
+3. At the beginning, Controller registers _protocol.json_ to Tag service app to notify a new protocol app is added in the system.
+4. Now, Controller starts to receive Tag Service's APIs and handle protocol's Device and Tags Configuration
    - Protocol Devices are configured in `${configurationPath}/configuration.json`
    - Protocol Tags are configured as a template in `${configurationPath}/template.d/$(templateName)`
 
