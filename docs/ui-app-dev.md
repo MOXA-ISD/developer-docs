@@ -3,9 +3,9 @@ id: ui-app-dev
 title: Development
 ---
 
-After preparing develop environment, you now have a skeleton to work from for your specific web application UI. The following discusses the rest of the app ui starter structure and develop progress in order for you to prepare your application.
+After preparing develop environment, you now have a skeleton to work from for your specific APP application UI. The following discusses the rest of the app ui starter structure and develop progress in order for you to prepare your application.
 
-## Directory Structure
+## APP UI starter Directory Structure
 
 ```sh
 .
@@ -45,7 +45,7 @@ After preparing develop environment, you now have a skeleton to work from for yo
 ├── package.json
 ```
 
-We use angular to build this app UI starter if you are not familiar with angular or UI development, we provide you to generate web UI by config.
+We use angular to build this app UI starter if you are not familiar with angular or UI development, we provide you to generate APP web UI by config.
 
 > The `apps/tp-app/src/assets/tp-app.resource.json` file is a config which can generate a form automatically by following [config instruction](./ui-app-component-config.md).
 
