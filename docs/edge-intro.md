@@ -325,6 +325,8 @@ You can get source easily by `tdk`. Please refer to [Development Kit](edge-appde
 
 ### I.Web Service API Reference
 
+We list a few common API as following. The full API document is hosted [here](https://thingspro-edge-oapi.netlify.com/)
+
 Get templates
 
 ```shell
