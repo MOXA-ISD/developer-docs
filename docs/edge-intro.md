@@ -19,10 +19,11 @@ Following is a typical data acquisition example with this scenario: a MODBUS/TCP
 ## STEP 1: Install ThingsPro Edge
 
 ### 1.1. Install ThingsPro Edge
+
 A single command is used to install ThingsPro Edge in MOXA hardware, be sure to run it with root privilege
 
 ```shell
-root@Moxa:~# wget -O- http://repo.moxa.online/static/v3/edge/dists/v0.3.0/install.sh | sh -s $PRODUCT_NAME
+root@Moxa:~# wget -O- http://repo.moxa.online/static/v3/edge/dists/v0.3/install.sh | sh -s $PRODUCT_NAME
 ...
 **********************************************************
 * The installation process ended successfully.
@@ -96,6 +97,7 @@ root@Moxa:~# appman app ls
 ```
 
 ### 2.2. Run thingspro-web service
+
 If web service is ready, the state will show `ready`.
 
 Now, you can check device profile via API
@@ -141,9 +143,10 @@ root@Moxa:~# curl -s https://127.0.0.1/api/v1/profile \
 
 ## STEP 3: Polling Sensor Data Using MODBUS/TCP master APP
 
-ThingsPro Edge has the ability to extend functions by installing APPs. We will start to do data acquisition by installing and MODBUS/TCP  master APP.
+ThingsPro Edge has the ability to extend functions by installing APPs. We will start to do data acquisition by installing and MODBUS/TCP master APP.
 
 ### 3.1. Install related APP or service
+
 ```shell
 root@Moxa:~# appman app install tagservice
 root@Moxa:~# appman app install modbusmaster
@@ -283,7 +286,8 @@ root@Moxa:~# curl https://127.0.0.1/api/v1/tags/virtual \
 ```
 
 ## STEP 4: Create Hello APP to read and display the tag data
-To subscribe data, we used a simple Hello APP written in Python code to show the data
+
+To subscribe data, we used a simple Hello APP wirtten in Python code to show the data
 
 ```python
 from libmxidaf_py import TagV2
@@ -318,6 +322,7 @@ Then open [https://<board-ip>/apps/north-hello/](https://<board-ip>/apps/north-h
 You can get source easily by `tdk`. Please refer to [Development Kit](edge-appdev-app).
 
 ## Appendix
+
 ### I.Web Service API Reference
 
 Get templates

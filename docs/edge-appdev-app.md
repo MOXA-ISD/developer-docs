@@ -57,7 +57,11 @@ After initializing successfully, the file structure looks like
         └── templates
             └── index.html
 
-[Dockerfile](https://docs.docker.com/compose/compose-file/) describe how the docker image is built, and [docker-compose.yml](https://docs.docker.com/compose/compose-file/) defines running multi-container Docker application. `metadata.yml` defines how it works and shows in APP Market of ThingsPro Edge. ThingsPro Edge has a web server in front of all APPs. APP has to define which pages and any RESTful APIs expose to exterior in [nginx.conf](https://nginx.org/en/docs/). src is implementation of this APP.
+[Dockerfile](https://docs.docker.com/compose/compose-file/) describe how the docker image is built, and [docker-compose.yml](https://docs.docker.com/compose/compose-file/) defines running multi-container Docker application. `metadata.yml` defines how it works and shows in APP Market of ThingsPro Edge. ThingsPro Edge has a web server in front of all APPs. APP has to define which pages and any RESTful APIs expose to exterior in [nginx.conf](https://nginx.org/en/docs/). `src` is implementation of this APP.
+
+In this sample, we use [flask](http://flask.pocoo.org/) as web development framework that HTML files is located in `src/templates`. However, for a modern web architecture that front-end and back-end are separated, you may serve font-end static files by our internal web server that puts static files into `ui/` folder, and they finally will be deployed to `/var/thingspro/www/<appname>` during installation. The folder is corresponding to URL `https://<ip>/apps/<appname>`. So, you could implement your web pages by your favorite web front-end framework, like [AngularJS](https://angularjs.org/), [React](http://flask.pocoo.org/) or [Vue.js](https://vuejs.org/). Moreover, you also could choose your facovite back-end framework or programing language.
+
+If you are designing a simple UI, we recommend you to follow [UI Docs](ui-intro) which can generate a page by confiugurition and the theme will be aligned to ThingsPro.
 
 ## STEP 3: Build APP
 
