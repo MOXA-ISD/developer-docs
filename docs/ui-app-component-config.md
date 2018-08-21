@@ -564,7 +564,7 @@ or
 }
 ```
 
-## `select`
+### `select`
 
 | Property | type                                                   | Description      |
 | -------- | ------------------------------------------------------ | ---------------- |
@@ -604,7 +604,7 @@ or
 }
 ```
 
-## `slider`
+### `slider`
 
 | Property | type    | Description                              |
 | -------- | ------- | ---------------------------------------- |
@@ -627,7 +627,7 @@ or
 }
 ```
 
-## `tagSelector`
+### `tagSelector`
 
 ### Notice
 
@@ -642,7 +642,7 @@ The type is for cloud applications to select required tags.
 }
 ```
 
-## `toggle`
+### `toggle`
 
 | Property | type   | Description    |
 | -------- | ------ | -------------- |
