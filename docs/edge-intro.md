@@ -3,23 +3,23 @@ id: edge-intro
 title: Introduction
 ---
 
-ThingsPro Edge is an intelligent industrial IoT edge device to help you accelerate the development of your IIoT applications and create a smarter field site. ThingsPro Edge extends connectivity for data acquisition by APPs
+ThingsPro Edge is an intelligent industrial IoT application platform to help you accelerate the make of IIoT edge devices, the development of your IIoT applications, and all the way to build a smarter field site. ThingsPro Edge extends connectivity for data acquisition by APPs.
 This document will give you an overview and steps to create an APP running on top of ThingsPro version 3 and after.
 
 ![system-overview](assets/edge/system-overview.png)
 
-- **Southbound APP** usually to acquires data from field devices, like sensors, smart meters and then publishes the data to subcribers. It also listens direct command from other APP and routes to the underlying devices.
-- **Northbound APP** usually subscribes data from the publisher and then exports to the cloud. It also comprises web interface and backend HTTP service to configure which data to be uploaded and collecting interval. Besides, it has a daemon to subscribe data in real time.
-- **DATA CORE** is responsible to manage these field devices and tags. APPs will be notified when a device registers to ThingsPro Edge with the protocol the southbound APP provieded. The design and implementation will be introduced in [Southbound SDK](edge-appdev-south).
-- Web interface of northbound APP is needed to register to **WEB SERVER** that is a reverse proxy to sucure REST API. APP life cycle is managed by **APP SERVICE**. APP is container based and package by ThingsPro [developent kit](edge-appdev-app).
+- **Southbound APP** usually to acquires data from field devices, like sensors, smart meters and then publishes the data to subscribers. It also listens to direct command from other APP and routes to the underlying devices.
+- **Northbound APP** usually subscribes data from the publisher and then exports to the cloud. It also comprises web interface and backend HTTP service to configure which data to be uploaded and collecting interval. Besides, it comes with a daemon to subscribes data in real time.
+- **DATA CORE** is responsible to manage these field devices and tags. APPs will be notified when a device registers to ThingsPro Edge with the protocol the southbound APP provided. The design and implementation will be introduced in [Southbound SDK](edge-appdev-south).
+- The web interface of the northbound APP is needed to register to **WEB SERVER** that is a reverse proxy to secure REST API. APP lifecycle is managed by **APP SERVICE**. An APP is container-based and packaged by ThingsPro [developent kit](edge-appdev-app).
 - **Device Management** makes the hardware to be managed by ThingsPro Edge and ThingsPro Server.
 
-Following is an typical data acquisition example with this scenario: a MODBUS/TCP master APP to poll data from field device and then export the data to the cloud:
+Following is a typical data acquisition example with this scenario: a MODBUS/TCP master APP to poll data from the field device and then export the data to the cloud:
 
 ## STEP 1: Install ThingsPro Edge
 
 ### 1.1. Install ThingsPro Edge
-A single command is used to install ThingsPro Edge in MOXA hardware, be sure to run it with root
+A single command is used to install ThingsPro Edge in MOXA hardware, be sure to run it with root privilege
 
 ```shell
 root@Moxa:~# wget -O- http://repo.moxa.online/static/v3/edge/dists/v0.3.0/install.sh | sh -s $PRODUCT_NAME
@@ -31,8 +31,8 @@ root@Moxa:~# wget -O- http://repo.moxa.online/static/v3/edge/dists/v0.3.0/instal
 
 Currently supported products are:
 
-- uc8112-lx-cg
-- mc1121
+- uc8112-lx-cg (UC-8112-LX)
+- mc1121 (MC-1121)
 
 You may also find the up-to-date product list by executing:
 
@@ -141,7 +141,7 @@ root@Moxa:~# curl -s https://127.0.0.1/api/v1/profile \
 
 ## STEP 3: Polling Sensor Data Using MODBUS/TCP master APP
 
-ThingsPro Edge have ability to extend functions by installing APPs. We will start to do data acquisition by installing and MODBUS/TCP  master APP.
+ThingsPro Edge has the ability to extend functions by installing APPs. We will start to do data acquisition by installing and MODBUS/TCP  master APP.
 
 ### 3.1. Install related APP or service
 ```shell
@@ -202,7 +202,7 @@ Wait modbusmaster and tagservice are ready as following
 +---------------+---------------------+---------------------------+--------+
 ```
 
-Add a device associating to the template, where `10.144.33.168` must be replaced to IP address of your computer that simulate a modbus device and `eth3` is the interface to the sumulator.
+Add a device associating to the template, where `10.144.33.168` must be replaced to the IP address of your computer that simulates a Modbus device and `eth3` is the interface to the simulator.
 
 ```shell
 root@Moxa:~# curl https://127.0.0.1/api/v1/tags/fieldbus/modbus/device \
@@ -247,7 +247,7 @@ root@Moxa:~# curl https://127.0.0.1/api/v1/tags/fieldbus/modbus/devices \
 }
 ```
 
-Then, you may install Modbus simulator. For example, we use [modrssim](https://sourceforge.net/projects/modrssim/). Open it and set protocol to TCP.
+Then, you may install a Modbus simulator. For example, we use [modrssim](https://sourceforge.net/projects/modrssim/). Open it and set protocol to TCP.
 
 ![modbus simulator](assets/edge/modrssim.png)
 
@@ -255,7 +255,7 @@ The number of `received/sent` should increase if connected.
 
 ### Tag Types
 
-In previous section, we add a device and define its data element that called **I/O Tag** in ThingsPro Edge. I/O Tag can be listed by API
+In the previous section, we add a device and define its data element that called **I/O Tag** in ThingsPro Edge. I/O Tag can be listed by API
 
 ```shell
 root@Moxa:~# curl https://127.0.0.1/api/v1/tags/fieldbus \
@@ -264,7 +264,7 @@ root@Moxa:~# curl https://127.0.0.1/api/v1/tags/fieldbus \
         -H "mx-api-token:$(cat /etc/mx-api-token)" -k
 ```
 
-If you want to retrieve CPU usage, memory usage and others metrics of system that named **System Tag**. The supported system tag can be fetched by
+If you want to retrieve CPU usage, memory usage and others metrics of the system that named **System Tag**. The supported system tag can be fetched by
 
 ```shell
 root@Moxa:~# curl https://127.0.0.1/api/v1/tags/system \
@@ -273,7 +273,7 @@ root@Moxa:~# curl https://127.0.0.1/api/v1/tags/system \
         -H "mx-api-token:$(cat /etc/mx-api-token)" -k
 ```
 
-The last tag is **Virtual Tag**. It is used by APP(normaly a north APP) publishing virtual data which used by another APP after it streamlines real data from devices. The supported virtual tags list by following API
+The last tag is **Virtual Tag**. It is used by APP (normally a northbound APP) publishing virtual data which used by another APP after it streamlines real data from devices. The supported virtual tags list by the following API
 
 ```shell
 root@Moxa:~# curl https://127.0.0.1/api/v1/tags/virtual \
@@ -283,7 +283,7 @@ root@Moxa:~# curl https://127.0.0.1/api/v1/tags/virtual \
 ```
 
 ## STEP 4: Create Hello APP to read and display the tag data
-To subscribe data, we used a simple Hello APP wirtten in Python code to show the data
+To subscribe data, we used a simple Hello APP written in Python code to show the data
 
 ```python
 from libmxidaf_py import TagV2
@@ -305,7 +305,7 @@ tagv2.subscribe(
 )
 ```
 
-This sample is already packed as an APP. You can install by
+This sample is already packed as an APP. You can install it by
 
 ```shell
 root@Moxa:~# appman app install north-hello
