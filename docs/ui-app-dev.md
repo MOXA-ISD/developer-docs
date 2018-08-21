@@ -65,3 +65,7 @@ We use angular to build this app UI starter if you are not familiar with angular
 
 5. Pack App with UI
    When build app finished, you can put all files which in the `dist/apps/app/*` into following path `src/templates/` which is introduced in [STEP: 3 Build App](edge-appdev-app.md/#step-3-build-app).
+
+### Reference
+
+If you want to build your App UI from scratch by yourself, we suggest you to follow our [design guide](assets/ui/design-guide-v1.pdf).
