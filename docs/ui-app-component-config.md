@@ -1,6 +1,6 @@
 ---
 id: ui-app-component-config
-title: Component Configs
+title: UI Component Configuration
 ---
 
 ## `Fields` is an array of Config
