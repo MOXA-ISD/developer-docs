@@ -3,33 +3,26 @@ id: ui-app-dev
 title: Development
 ---
 
-After preparing develop environment, you now have a skeleton to work from for your specific APP application UI. The following discusses the rest of the app ui starter structure and develop progress in order for you to prepare your application.
+After setting up the develop environment, you now have a skeleton to create a application UI. The following section provides a basic folder structure and develop progress in order for you to prepare your application.
 
 ## APP UI starter Directory Structure
 
 ```sh
 .
 ├── apps
-│   └── tp-app
+│   └── app
+│       ├── browserslist
+│       ├── karma.conf.js
 │       ├── src
 │       │   ├── app
+│       │   │   ├── app-routing.module.ts
 │       │   │   ├── app.component.css
 │       │   │   ├── app.component.html
 │       │   │   ├── app.component.spec.ts
 │       │   │   ├── app.component.ts
-│       │   │   ├── app.module.ts
-│       │   │   ├── components
-│       │   │   │   ├── tp-app.component.html
-│       │   │   │   └── tp-app.component.ts
-│       │   │   ├── services
-│       │   │   │   └── tp-app.service.ts
-│       │   │   └── store
-│       │   │       ├── tp-app.actions.ts
-│       │   │       ├── tp-app.effects.ts
-│       │   │       ├── tp-app.reducer.ts
-│       │   │       └── tp-app.selectors.ts
+│       │   │   └── app.module.ts
 │       │   ├── assets
-│       │   │   └── tp-app.resource.json
+│       │   │   └── app.resource.json
 │       │   ├── environments
 │       │   │   ├── environment.prod.ts
 │       │   │   └── environment.ts
@@ -42,6 +35,31 @@ After preparing develop environment, you now have a skeleton to work from for yo
 │       ├── tsconfig.app.json
 │       ├── tsconfig.spec.json
 │       └── tslint.json
+├── libs
+│   └── custom
+│       ├── karma.conf.js
+│       ├── ng-package.json
+│       ├── ng-package.prod.json
+│       ├── package.json
+│       ├── src
+│       │   ├── index.ts
+│       │   ├── lib
+│       │   │   ├── components
+│       │   │   │   ├── custom.component.html
+│       │   │   │   └── custom.component.ts
+│       │   │   ├── custom.module.spec.ts
+│       │   │   ├── custom.module.ts
+│       │   │   ├── custom.service.ts
+│       │   │   └── store
+│       │   │       ├── custom.actions.ts
+│       │   │       ├── custom.effects.ts
+│       │   │       ├── custom.reducer.ts
+│       │   │       └── custom.selectors.ts
+│       │   └── test.ts
+│       ├── tsconfig.lib.json
+│       ├── tsconfig.spec.json
+│       └── tslint.json
+├── nx.json
 ├── package.json
 ```
 
