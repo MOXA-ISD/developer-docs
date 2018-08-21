@@ -17,7 +17,7 @@ We have created an starter repository that will get all of the infrastructure se
 
 ### Prepare Development Environment
 
-1. Ensure you have the latest version of Node installed.
+1. Ensure you have the latest version of [Node](https://nodejs.org/en/) installed.
 
    > You have to be on Node >= 8.x
 
