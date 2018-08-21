@@ -1,6 +1,6 @@
 ---
 id: ui-intro
-title: Web UI Development Guide
+title: APP UI Development Guide
 sidebar_label: Introduction
 ---
 
@@ -21,5 +21,5 @@ We have created an starter repository that will get all of the infrastructure se
 
    > You have to be on Node >= 8.x
 
-2. Install [Angular Console Utility](https://angularconsole.com/#download) and [Visual Studio Code](https://code.visualstudio.com).
-3. Open terminal and change directory path to starter project and run `npm install` to install modules of starter dependencies
+2. Suggest to install [Angular Console Utility](https://angularconsole.com/#download) and [Visual Studio Code](https://code.visualstudio.com).
+3. Download a APP UI sample code from [starter project](https://angularconsole.com/#download) and run `npm install` to install modules of starter dependencies
