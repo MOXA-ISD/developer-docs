@@ -1,6 +1,6 @@
 # developer-docs
 
-Developer guides for ThingsPro
+Developer guides for ThingsPro®
 
 ## Evnvironment
 

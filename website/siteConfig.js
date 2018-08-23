@@ -21,7 +21,7 @@ const users = [
 ];
 
 const siteConfig = {
-  title: 'ThingsPro' /* title for your website */,
+  title: 'ThingsPro®' /* title for your website */,
   tagline: 'Boost your IIoT development with ThingsPro',
   url: 'https://moxa-isd.github.io' /* your website url */,
   baseUrl: '/developer-docs/' /* base url for your project */,
