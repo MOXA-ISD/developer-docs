@@ -83,7 +83,10 @@ class Footer extends React.Component {
             height="45"
           />
         </a> */}
-        <section className="copyright">{this.props.config.copyright}</section>
+        <section className="copyright">
+          {this.props.config.copyright}
+          <p>ThingsPro logo and ThingsPro are registered trademarks of Moxa Inc.</p>
+        </section>
       </footer>
     );
   }
