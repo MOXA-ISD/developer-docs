@@ -312,10 +312,10 @@ tagv2.subscribe(
 This sample is already packed as an APP. You can install it by
 
 ```shell
-root@Moxa:~# appman app install north-hello
+root@Moxa:~# appman app install hello-north
 ```
 
-Then open [https://<board-ip>/apps/north-hello/](https://<board-ip>/apps/north-hello/) to see the data which looks like
+Then open [https://<board-ip>/apps/hello-north/](https://<board-ip>/apps/hello-north/) to see the data which looks like
 
 ![north sample](assets/edge/north-sample.jpg)
 
