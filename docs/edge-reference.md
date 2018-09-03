@@ -1,6 +1,6 @@
 ---
 id: edge-reference
-title: Reference
+title: API Reference
 ---
 
 ## Web Service API Reference
