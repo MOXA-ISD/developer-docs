@@ -11,7 +11,7 @@ Start ThingsPro Development Desktop
 $ docker run --name tdd -p 6080:80 -p 8000:8000 \
     -v /run/docker.sock:/host/run/docker.sock \
     -v /var/thingspro:/var/thingspro \
-    moxaisd/thingspro-dev-desktop:0.1-linux-amd64
+    moxaisd/thingspro-dev-desktop:0.5-linux-amd64
 ```
 
 You can browse [http://127.0.0.1:6080](http://127.0.0.1:6080) now that show as following
