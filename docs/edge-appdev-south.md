@@ -149,7 +149,7 @@ Parameters:
 - _mxfbi_t_ mxfbi : mxfbi_t instance\*
 - _void_ usr_data : custom user data for the callback function uses.\*
 - _MXFBI_READ_TAG_CALLBACK read_tag_callback : read callback function pointer, which your implementation of read tag value by given device and tag name._
-- _return value of read callback shall Value struct if successful; otherwise, return NULL._
+- _return value of read callback shall be 0 with read value and value type if successful; otherwise, return -1._
 
 Return value
 
@@ -229,13 +229,18 @@ Return value
 
 ```c
 #include "mxfbi.h"
-Value* read_tag_callback (char *equipment_name, char *tag_name, void *usr_data)
+int read_tag_callback (char *device_name, char *tag_name, value_t* value, value_type_t* value_type, void *usr_data)
 {
    // your protocol read tag implementation
+  value->i = polling_value_;
+  *value_type = TAG_VALUE_TYPE_INT;
+  return 0;
 }
-int write_tag_callback (char *equipment_name, char *tag_name, uint8_t *write_buffer, int write_size, void *usr_data)
+int write_tag_callback (char *device_name, char *tag_name, value_t value, value_type_t value_type, void *usr_data)
 {
     // your protocol write tag implementation
+    polling_value_ = value.i;
+    return 0;
 }
 
 char* status_callback (void *obj)
