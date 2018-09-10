@@ -57,3 +57,22 @@ After creating new version, you can compare with `master` branch and make a PR.
 ```sh
 yarn create:edge:pdf
 ```
+
+## Create a Blog
+
+To publish in the blog, create a file within the blog directory with a formatted name of YYYY-MM-DD-My-Blog-Post-Title.md. The post date is extracted from the file name.
+
+For example, at website/blog/2017-08-18-Introducing-Docusaurus.md:
+
+```
+---
+author: Frank Li
+authorURL: https://twitter.com/foobarbaz
+authorFBID: 503283835
+title: Introducing Docusaurus
+---
+
+Lorem Ipsum...
+```
+
+More detail, [check this reference](https://docusaurus.io/docs/en/adding-blog)
