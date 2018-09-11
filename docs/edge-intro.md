@@ -3,6 +3,7 @@ id: edge-intro
 title: Introduction
 ---
 
+hello
 ThingsPro Edge is an intelligent industrial IoT application platform to help you accelerate the make of IIoT edge devices, the development of your IIoT applications, and all the way to build a smarter field site. ThingsPro Edge extends connectivity for data acquisition by APPs.
 This document will give you an overview and steps to create an APP running on top of ThingsPro version 3 and after.
 
