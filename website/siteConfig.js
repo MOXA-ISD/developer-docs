@@ -83,7 +83,9 @@ const siteConfig = {
   // ogImage: 'img/docusaurus.png',
   // twitterImage: 'img/docusaurus.png',
 
-  cleanUrl: true
+  cleanUrl: true,
+
+  editUrl: 'https://github.com/MOXA-ISD/developer-docs/edit/develop/docs/'
 
   // You may provide arbitrary config keys to be used as needed by your
   // template. For example, if you need your repo's URL...
