@@ -35,7 +35,7 @@ pipeline:
       su docser -c "rsync -a build/developer-docs/ /mnt/docs";
       echo -e "\033[0;32mSUCCESS!!\033[0m";
     when:
-      event: [ push, pull_request ]
+      event: [ push ]
     volumes:
       - /mnt/storage/repo/static/developer-docs:/mnt/docs:z
 
