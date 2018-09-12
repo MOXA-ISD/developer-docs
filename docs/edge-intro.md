@@ -51,54 +51,24 @@ products:
 root@Moxa:~# service thingspro-edge start
 ```
 
-## STEP 2: Install ThingsPro Edge Web Service
+### 1.3. Wait built-in APPs installed
 
-ThingsPro Edge provides RESTful API for management that is listed in [ThingsPro Edge OAPI server](https://thingspro-edge-oapi.netlify.com/). To enable API service, we have to install ThingsPro Web APP. First, update APPs index
-
-```shell
-root@Moxa:/home/moxa# appman source update --force
-I: updating source stable(https://repo.moxa.online/static/v3/edge/dists/v0.3.0/apps)
-I: updated source stable(https://repo.moxa.online/static/v3/edge/dists/v0.3.0/apps)
-I: updating package app-azure_0.3.0-15_amd64.mpkg
-I: updating package app-azure_0.3.0-15_armhf.mpkg
-I: updating package console_0.3.0-5_amd64.mpkg
-I: updating package console_0.3.0-5_armhf.mpkg
-I: updating package linuxdesktop_0.3.0-10_amd64.mpkg
-I: updating package linuxdesktop_0.3.0-10_armhf.mpkg
-I: updating package tagservice_0.2.4-14_amd64.mpkg
-I: updating package tagservice_0.2.4-14_armhf.mpkg
-I: updating package thingspro-web_0.3.0-1_amd64.mpkg
-I: updating package thingspro-web_0.3.0-1_armhf.mpkg
-```
-
-### 2.1. Install thingspro-web service
-
-```shell
-root@Moxa:~# appman app install thingspro-web
-```
-
-NOTE: If the command returns "appman is not ready", that means you have to wait a few seconds until ThingsPro Edge is ready to install web service.
-
-It will take a while and you may monitor the installation progress by
+ThingsPro Edge provides RESTful API for management that is listed in [ThingsPro Edge OAPI server](https://thingspro-edge-oapi.netlify.com/). When first installing ThingsPro Edge, you have to wait a while for installing built-in APPs, such as API service. You can query progress by
 
 ```shell
 root@Moxa:~# appman app ls
-+---------------+--------------------+--------------------------------+---------+
-|     NAME      |      VERSION       |     STATE (DESIRED STATE)      | HEALTH  |
-+---------------+--------------------+--------------------------------+---------+
-| app-azure     | N/A (0.3.0-15)     | uninstalled (uninstalled)      | good    |
-| console       | N/A (0.3.0-5)      | uninstalled (uninstalled)      | good    |
-| linuxdesktop  | N/A (0.3.0-10)     | uninstalled (uninstalled)      | good    |
-| modbusmaster  | N/A (3.5.3-11)     | uninstalled (uninstalled)      | good    |
-| tagservice    | N/A (0.2.4-14)     | uninstalled (uninstalled)      | good    |
-| thingspro-web | 0.3.0-1 (0.3.0-1)  | installing (ready) - importing | running |
-|               |                    | images...3% (2/3)              |         |
-+---------------+--------------------+--------------------------------+---------+
++---------------+----------+--------------------------------+---------+
+|     NAME      | VERSION  |     STATE (DESIRED STATE)      | HEALTH  |
++---------------+----------+--------------------------------+---------+
+| tagservice    | 0.2.4-14 | installing (ready) - importing | running |
+|               |          | images...0% (3/4)              |         |
+| thingspro-web | N/A      | init (ready)                   | wait    |
++---------------+----------+--------------------------------+---------+
 ```
 
-### 2.2. Run thingspro-web service
-
 If web service is ready, the state will show `ready`.
+
+NOTE: If the command returns "appman is not ready", that means you have to wait a few seconds until ThingsPro Edge started well.
 
 Now, you can check device profile via API
 
@@ -141,18 +111,39 @@ root@Moxa:~# curl -s https://127.0.0.1/api/v1/profile \
 }
 ```
 
-## STEP 3: Polling Sensor Data Using MODBUS/TCP master APP
+## STEP 2: Polling Sensor Data Using MODBUS/TCP master APP
 
 ThingsPro Edge has the ability to extend functions by installing APPs. We will start to do data acquisition by installing and MODBUS/TCP master APP.
 
-### 3.1. Install related APP or service
+### 2.1. Install related APP or service
+
+First, update APP index
 
 ```shell
-root@Moxa:~# appman app install tagservice
+root@Moxa:/home/moxa# appman source update
+I: updating source stable(https://repo.moxa.online/static/v3/edge/dists/v0.5.0/apps)
+I: updated source stable(https://repo.moxa.online/static/v3/edge/dists/v0.5.0/apps)
+I: updating package app-azure_0.3.0-17_amd64.mpkg
+I: updating package app-azure_0.3.0-17_armhf.mpkg
+I: updating package console_0.3.0-5_amd64.mpkg
+I: updating package console_0.3.0-5_armhf.mpkg
+I: updating package linuxdesktop_0.3.0-10_amd64.mpkg
+I: updating package linuxdesktop_0.3.0-10_armhf.mpkg
+I: updating package modbusmaster_3.5.6-19_armhf.mpkg
+I: updating package nodered_0.3.0-1_armhf.mpkg
+I: updating package tagservice_0.2.6-21_amd64.mpkg
+I: updating package tagservice_0.2.6-21_armhf.mpkg
+I: updating package thingspro-web_0.5.0-14_amd64.mpkg
+I: updating package thingspro-web_0.5.0-14_armhf.mpkg
+```
+
+Install MODBUS/TCP master APP
+
+```shell
 root@Moxa:~# appman app install modbusmaster
 ```
 
-### 3.2. Add MODBUS slave devices and define tags to read
+### 2.2. Add MODBUS slave devices and define tags to read
 
 Before creating a device, we must add a template that defines data elements(tags). The template can be download at [here](assets/edge/iologik-e2242.json)
 
@@ -285,7 +276,7 @@ root@Moxa:~# curl https://127.0.0.1/api/v1/tags/virtual \
         -H "mx-api-token:$(cat /etc/mx-api-token)" -k
 ```
 
-## STEP 4: Create Hello APP to read and display the tag data
+## STEP 3: Create Hello APP to read and display the tag data
 
 To subscribe data, we used a simple Hello APP wirtten in Python code to show the data
 
