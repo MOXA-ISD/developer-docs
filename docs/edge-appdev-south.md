@@ -36,7 +36,7 @@ General Overview of Southbound APP is composed by
 2. After getting configurations, let's implement your protocol daemon:
    1. Polling protocol devices and tags implementation
    2. Publish polling tags, refer to [Tag SDK](edge-appdev-tag)
-   3. Implement direct command callbacks for others apps can direct access your tags(read/write), refer to [fieldbus SDK](direct-command-interface-fieldbus-sdk)
+   3. Implement direct command callbacks for others apps can direct access your tags(read/write), refer to [fieldbus SDK](#direct-command-interface-fieldbus-sdk)
       - tag direct read callback handler `**MXFBI_READ_TAG_CALLBACK**`
       - tag direct write callback handler `**MXFBI_WRITE_TAG_CALLBACK**`
       - tags status of devices callback handler `**MXFBI_STATUS_CALLBACK**`
