@@ -203,7 +203,7 @@ root@Moxa:~# curl https://127.0.0.1/api/v1/tags/fieldbus/modbus/device \
         -X POST \
         -H "Content-Type:application/json" \
         -H "mx-api-token:$(cat /etc/mx-api-token)" -k \
-        -d '{"name":"My_ioLogik-E2242","interface":"eth3","templateName":"iologik-e2242","host":"10.144.33.168","deviceId":0,"service":502}' | json_pp
+        -d '{"name":"My_ioLogik-E2242.json","interface":"eth3","templateName":"iologik-e2242","host":"10.144.33.168","deviceId":0,"service":502}' | json_pp
 {
    "service" : 502,
    "protocol" : "modbus",
