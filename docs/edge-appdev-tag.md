@@ -20,7 +20,7 @@ Architectures:
 
 ### Prerequisites
 
-Before you start a new adventure with ThingsPro Tag SDK. You need to set up the apt-repository. Afterward, you can install and update the relevant packages from the thingspro apt-repositary.
+Before you start a new adventure with ThingsPro Tag SDK. You need to set up the apt-repository. Afterward, you can install and update the relevant packages from the thingspro apt-repository. If you are not allowed to directly access this apt-repository, development packages are packed into the Docker image [moxaisd/thingspro-dev-base](https://hub.docker.com/r/moxaisd/thingspro-dev-base/).
 
 **ADD GPG KEYS**
 
@@ -46,24 +46,26 @@ Before you start a new adventure with ThingsPro Tag SDK. You need to set up the 
 The structure of tag list.
 
 **SCHEMA**
-| Name      | Description                                                                                                        |
+| Name | Description |
 | :-------: | :----------------------------------------------------------------------------------------------------------------- |
-|  srcName  | source of tag in which the data come from.                                                                         |
-|  tagName  | name of tag.                                                                                                       |
-|  tagType  | the type of tag [io, system, virtual.                                                                              |
-|  dataType | the data type of tag \[uint16, uint32, uint64, int16, int32, int64, float32, float64, string, boolean, bytearray\] |
-|  dataUnit | the data unit of tag.                                                                                              |
-|  duration | polling interval in the unit of millisecond. 0ms means ASAP.                                                       |
-|  access   | the access type of tag ["ro", "wo", "rw"].                                                                         |
-|  default  | the default value of tag. (Optional)                                                                               |
+| srcName | source of tag in which the data come from. |
+| tagName | name of tag. |
+| tagType | the type of tag [io, system, virtual. |
+| dataType | the data type of tag \[uint16, uint32, uint64, int16, int32, int64, float32, float64, string, boolean, bytearray\] |
+| dataUnit | the data unit of tag. |
+| duration | polling interval in the unit of millisecond. 0ms means ASAP. |
+| access | the access type of tag `["ro", "wo", "rw"]`. |
+| default | the default value of tag. (Optional) |
 
 ### mxtag_list
 
 Be used to obtain tag list by the specific type `tag_type_t`.
+
 ```c
     int mxtag_list( mxtaglist_t **tags,
                     tag_type_t type )
 ```
+
 **Parameters**
 
 | Name | Description                                                            |
@@ -76,9 +78,11 @@ Be used to obtain tag list by the specific type `tag_type_t`.
 If the function succeeds, the return value is the number of the tag list size ≥ 0. Otherwise, the return value is -1 on failure.
 
 ### mxtag_list_to_json
+
 ```c
       char *mxtag_list_to_json( tag_type_t type )
 ```
+
 Be used to obtain tag list in json format by the specific type `tag_type_t`.
 
 **Parameters**
@@ -94,9 +98,11 @@ If the function succeeds, the return value is a json format content of tag list.
 ### mxtag_list_free
 
 Free memory that was allocated in `mxtag_list`.
+
 ```c
       void mxtag_list_free( mxtaglist_t **tags )
 ```
+
 **Parameters**
 
 | Name | Description                                                |
@@ -109,6 +115,7 @@ Free memory that was allocated in `mxtag_list`.
 None.
 
 ### Example: get tag list
+
 ```c
     #include <mxtaglist.h>
 
@@ -133,7 +140,9 @@ None.
         return 0;
     }
 ```
+
 ### Example: get tag list in json format
+
 ```c
     #include <mxtaglist.h>
 
@@ -147,11 +156,13 @@ None.
         return 0;
     }
 ```
+
 ---
 
 ## Tag Pub/Sub API
 
 ### mxtag_publish
+
 ```c
       int mxtag_publish( tag_t           *tag,
                          const char      *source_name,
@@ -161,6 +172,7 @@ None.
                          data_value_t    *data_value,
                          data_type_t      data_type )
 ```
+
 **Parameters**
 
 |    Name     | Description                                                                                                    |
@@ -180,11 +192,13 @@ If the function succeeds, the return value is 0. Otherwise, 1 on failure.
 ---
 
 ### mxtag_subscribe
+
 ```c
       int mxtag_subscribe( tag_t           *tag,
                            const char      *source_name,
                            const char      *tag_name )
 ```
+
 **Parameters**
 
 |    Name     | Description                                 |
@@ -198,11 +212,13 @@ If the function succeeds, the return value is 0. Otherwise, 1 on failure.
 If the function succeeds, the return value is 0. Otherwise, 1 on failure.
 
 ### mxtag_unsubscribe
+
 ```c
       int mxtag_unsubscribe( tag_t           *tag,
                              const char      *source_name,
                              const char      *tag_name )
 ```
+
 **Parameters**
 
 |    Name     | Description                                 |
@@ -216,10 +232,12 @@ If the function succeeds, the return value is 0. Otherwise, 1 on failure.
 If the function succeeds, the return value is 0. Otherwise, 1 on failure.
 
 ### mxtag_subscribe_callback
+
 ```c
       int mxtag_subscribe_callback( tag_t      *tag,
                                     on_tag      cb_func )
 ```
+
 **Parameters**
 
 - tag Instance of tag api.
@@ -230,6 +248,7 @@ If the function succeeds, the return value is 0. Otherwise, 1 on failure.
 If the function succeeds, the return value is 0. Otherwise, 1 on failure.
 
 ### Example: publish tag
+
 ```c
     #include <stdio.h>
     #include <mxtagf.h>
@@ -257,7 +276,9 @@ If the function succeeds, the return value is 0. Otherwise, 1 on failure.
         return 0;
     }
 ```
+
 ### Example: subscribe tag
+
 ```c
     #include <mxtagf.h>
 
@@ -294,7 +315,9 @@ If the function succeeds, the return value is 0. Otherwise, 1 on failure.
         return 0;
     }
 ```
+
 **After tag subscription, the following sample shows how to receive tags by a callback function.**
+
 ```c
     void
         on_tag_callback(
@@ -334,9 +357,11 @@ If the function succeeds, the return value is 0. Otherwise, 1 on failure.
         printf("Unit: %s\n", unit);
     }
 ```
+
 ---
 
 ## Tag CLI
+
 ```shell
     Usage: tagcli [commands]
 
@@ -346,7 +371,9 @@ If the function succeeds, the return value is 0. Otherwise, 1 on failure.
                         [system <System tag list>]
                         [virtual <Virtual tag list>]
 ```
+
 **GET IO TAGS:**
+
 ```shell
     tagcli --list system
 ```

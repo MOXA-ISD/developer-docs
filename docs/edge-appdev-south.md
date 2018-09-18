@@ -1,13 +1,13 @@
 ---
 id: edge-appdev-south
-title: Southbound APP SDK
+title: Protocol APP SDK
 ---
 
 In this quickstart, you learn how to develop a data acquisition APP(Southbound APP) that meets thingspro needs.
 
 ## Overview
 
-General Overview of Southbound APP is composed by
+General Overview of Protocol APP is composed by
 
 - Fieldbus Controller
 - Configuration
@@ -100,9 +100,11 @@ Example:
 ## Controller Service - fieldbus controller
 
 1. Install Fieldbus Controller
+
 ```shell
 apt-get install mxfieldbus-controller
 ```
+
 2. Execute Fieldbus Controller as a routine service in your app container
 
 ```shell

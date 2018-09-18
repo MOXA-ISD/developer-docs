@@ -8,9 +8,9 @@ This document will give you an overview and steps to create an APP running on to
 
 ![system-overview](assets/edge/system-overview.png)
 
-- **Southbound APP** usually to acquires data from field devices, like sensors, smart meters and then publishes the data to subscribers. It also listens to direct command from other APP and routes to the underlying devices.
-- **Northbound APP** usually subscribes data from the publisher and then exports to the cloud. It also comprises web interface and backend HTTP service to configure which data to be uploaded and collecting interval. Besides, it comes with a daemon to subscribes data in real time.
-- **DATA CORE** is responsible to manage these field devices and tags. APPs will be notified when a device registers to ThingsPro Edge with the protocol the southbound APP provided. The design and implementation will be introduced in [Southbound SDK](edge-appdev-south).
+- **CLOUD APP** usually to acquires data from field devices, like sensors, smart meters and then publishes the data to subscribers. It also listens to direct command from other APP and routes to the underlying devices.
+- **PROTOCOL APP** usually subscribes data from the publisher and then exports to the cloud. It also comprises web interface and backend HTTP service to configure which data to be uploaded and collecting interval. Besides, it comes with a daemon to subscribes data in real time.
+- **DATA CORE** is responsible to manage these field devices and tags. APPs will be notified when a device registers to ThingsPro Edge with the protocol the protocol APP provided. The design and implementation will be introduced in [Protocol SDK](edge-appdev-south).
 - The web interface of the northbound APP is needed to register to **WEB SERVER** that is a reverse proxy to secure REST API. APP lifecycle is managed by **APP SERVICE**. An APP is container-based and packaged by ThingsPro [developent kit](edge-appdev-app).
 - **Device Management** makes the hardware to be managed by ThingsPro Edge and ThingsPro Server.
 
