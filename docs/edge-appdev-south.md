@@ -3,7 +3,7 @@ id: edge-appdev-south
 title: Southbound APP SDK
 ---
 
-In this quickstart you learn how to develop a data acquisition app(Southbound App) that meets thingspro needs.
+In this quickstart, you learn how to develop a data acquisition APP(Southbound APP) that meets thingspro needs.
 
 ## Overview
 
