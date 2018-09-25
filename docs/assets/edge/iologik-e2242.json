@@ -18,7 +18,7 @@
       "requestTimeoutMs": 5000,
       "pollingPeriodMs": 1000,
       "address": 1,
-      "quant\nity": 1,
+      "quantity": 1,
       "function": "read-coils"
     },
     {
