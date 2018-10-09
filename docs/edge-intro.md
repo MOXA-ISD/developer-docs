@@ -23,7 +23,7 @@ Following is a typical data acquisition example with this scenario: a MODBUS/TCP
 A single command is used to install ThingsPro Edge in MOXA hardware, be sure to run it with root privilege
 
 ```shell
-root@Moxa:~# wget -O- http://repo.moxa.online/static/v3/edge/dists/v0.5.0/install.sh | sh -s $PRODUCT_NAME
+root@Moxa:~# wget -O- http://repo.moxa.online/static/v3/edge/dists/v0.6.0/install.sh | sh -s $PRODUCT_NAME
 ...
 **********************************************************
 * The installation process ended successfully.
@@ -38,7 +38,7 @@ Currently supported products are:
 You may also find the up-to-date product list by executing:
 
 ```shell
-root@Moxa:~# wget -O- -q http://repo.moxa.online/static/v3/edge/dists/v0.5.0/install.sh | sh
+root@Moxa:~# wget -O- -q http://repo.moxa.online/static/v3/edge/dists/v0.6.0/install.sh | sh
 usage: ./install.sh <product>
 products:
   - mc1121
@@ -121,8 +121,8 @@ First, update APP index
 
 ```shell
 root@Moxa:/home/moxa# appman source update
-I: updating source stable(https://repo.moxa.online/static/v3/edge/dists/v0.5.0/apps)
-I: updated source stable(https://repo.moxa.online/static/v3/edge/dists/v0.5.0/apps)
+I: updating source stable(https://repo.moxa.online/static/v3/edge/dists/v0.6.0/apps)
+I: updated source stable(https://repo.moxa.online/static/v3/edge/dists/v0.6.0/apps)
 I: updating package app-azure_0.3.0-17_amd64.mpkg
 I: updating package app-azure_0.3.0-17_armhf.mpkg
 I: updating package console_0.3.0-5_amd64.mpkg
