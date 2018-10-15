@@ -76,7 +76,7 @@ Now, you can check device profile via API
 root@Moxa:~# curl -s https://127.0.0.1/api/v1/profile \
         -X GET \
         -H "Content-Type:application/json" \
-        -H "mx-api-token:$(cat /etc/mx-api-token)" -k | json_pp
+        -H "mx-api-token:$(cat /var/thingspro/data/mx-api-token)" -k | json_pp
 {
     "deviceModelName": "UC-8112-LX-CG",
     "deviceType": "iiot-gateway",
@@ -151,7 +151,7 @@ Before creating a device, we must add a template that defines data elements(tags
 root@Moxa:~# curl https://127.0.0.1/api/v1/tags/fieldbus/modbus/templates/iologik-e2242 \
         -X POST \
         -H "Content-Type:application/json" \
-        -H "mx-api-token:$(cat /etc/mx-api-token)" -k \
+        -H "mx-api-token:$(cat /var/thingspro/data/mx-api-token)" -k \
         -d @./iologik-e2242.json | json_pp
 {
 "templateName" : "iologik-e2242.json",
@@ -202,7 +202,7 @@ Add a device associating to the template, where `10.144.33.168` must be replaced
 root@Moxa:~# curl https://127.0.0.1/api/v1/tags/fieldbus/modbus/device \
         -X POST \
         -H "Content-Type:application/json" \
-        -H "mx-api-token:$(cat /etc/mx-api-token)" -k \
+        -H "mx-api-token:$(cat /var/thingspro/data/mx-api-token)" -k \
         -d '{"name":"My_ioLogik-E2242","interface":"eth3","templateName":"iologik-e2242.json","host":"10.144.33.168","deviceId":0,"service":502}' | json_pp
 {
    "service" : 502,
@@ -223,7 +223,7 @@ Check device list
 root@Moxa:~# curl https://127.0.0.1/api/v1/tags/fieldbus/modbus/devices \
         -X GET \
         -H "Content-Type:application/json" \
-        -H "mx-api-token:$(cat /etc/mx-api-token)" -k | json_pp
+        -H "mx-api-token:$(cat /var/thingspro/data/mx-api-token)" -k | json_pp
 {
    "deviceList" : [
       {
@@ -255,7 +255,7 @@ In the previous section, we add a device and define its data element that called
 root@Moxa:~# curl https://127.0.0.1/api/v1/tags/fieldbus \
         -X GET \
         -H "Content-Type:application/json" \
-        -H "mx-api-token:$(cat /etc/mx-api-token)" -k
+        -H "mx-api-token:$(cat /var/thingspro/data/mx-api-token)" -k
 ```
 
 If you want to retrieve CPU usage, memory usage and others metrics of the system that named **System Tag**. The supported system tag can be fetched by
@@ -264,7 +264,7 @@ If you want to retrieve CPU usage, memory usage and others metrics of the system
 root@Moxa:~# curl https://127.0.0.1/api/v1/tags/system \
         -X GET \
         -H "Content-Type:application/json" \
-        -H "mx-api-token:$(cat /etc/mx-api-token)" -k
+        -H "mx-api-token:$(cat /var/thingspro/data/mx-api-token)" -k
 ```
 
 The last tag is **Virtual Tag**. It is used by APP (normally a northbound APP) publishing virtual data which used by another APP after it streamlines real data from devices. The supported virtual tags list by the following API
@@ -273,7 +273,7 @@ The last tag is **Virtual Tag**. It is used by APP (normally a northbound APP) p
 root@Moxa:~# curl https://127.0.0.1/api/v1/tags/virtual \
         -X GET \
         -H "Content-Type:application/json" \
-        -H "mx-api-token:$(cat /etc/mx-api-token)" -k
+        -H "mx-api-token:$(cat /var/thingspro/data/mx-api-token)" -k
 ```
 
 ## STEP 3: Create Hello APP to read and display the tag data
