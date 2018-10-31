@@ -167,10 +167,10 @@ None.
       int mxtag_publish( tag_t           *tag,
                          const char      *source_name,
                          const char      *tag_name,
-                         const char      *tag_ts,
-                         const char      *tag_unit,
                          data_value_t    *data_value,
-                         data_type_t      data_type )
+                         data_type_t      data_type,
+                         const char      *tag_unit,
+                         long long        tag_ts,
 ```
 
 **Parameters**
@@ -180,10 +180,10 @@ None.
 |     tag     | Instance of tag api.                                                                                           |
 | source_name | Source of tag in which the data comes from.                                                                    |
 |  tag_name   | Name of tag.                                                                                                   |
-|   tag_ts    | Timestamp at tag publishing.                                                                                   |
+|   tag_ts    | Publish timestamp in millisecond.                                                                              |
 |  tag_unit   | Unit of tag.                                                                                                   |
 |  data_type  | Data type of tag \[uint16, uint32, uint64, int16, int32, int64, float32, float64, string, boolean, bytearray\] |
-| data_value  | Value of tag.                                                                                                  |
+|  data_value | Value of tag.                                                                                                  |
 
 **Returns**
 
