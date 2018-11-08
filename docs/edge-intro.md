@@ -38,7 +38,7 @@ Currently supported products are:
 You may also find the up-to-date product list by executing:
 
 ```shell
-root@Moxa:~# wget -O- -q http://repo.moxa.online/static/v3/edge/dists/v0.6.0/install.sh | sh
+root@Moxa:~# wget -O- -q http://repo.moxa.online/static/v3/edge/dists/v0.7.0/install.sh | sh
 usage: ./install.sh <product>
 products:
   - mc1121
