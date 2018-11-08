@@ -23,7 +23,7 @@ Following is a typical data acquisition example with this scenario: a MODBUS/TCP
 A single command is used to install ThingsPro Edge in MOXA hardware, be sure to run it with root privilege
 
 ```shell
-root@Moxa:~# wget -O- http://repo.moxa.online/static/v3/edge/dists/v0.6.0/install.sh | sh -s $PRODUCT_NAME
+root@Moxa:~# wget -O- http://repo.moxa.online/static/v3/edge/dists/v0.7.0/install.sh | sh -s $PRODUCT_NAME
 ...
 **********************************************************
 * The installation process ended successfully.
