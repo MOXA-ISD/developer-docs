@@ -23,7 +23,7 @@ Following is a typical data acquisition example with this scenario: a MODBUS/TCP
 A single command is used to install ThingsPro Edge in MOXA hardware, be sure to run it with root privilege
 
 ```shell
-root@Moxa:~# wget -O- http://repo.moxa.online/static/v3/edge/dists/v0.7.0/install.sh | sh -s $PRODUCT_NAME
+root@Moxa:~# wget -O- http://repo.moxa.online/static/v3/edge/dists/v0.8.0/install.sh | sh -s $PRODUCT_NAME
 ...
 **********************************************************
 * The installation process ended successfully.
@@ -32,17 +32,17 @@ root@Moxa:~# wget -O- http://repo.moxa.online/static/v3/edge/dists/v0.7.0/instal
 
 Currently supported products are:
 
-- uc8112-lx-cg (UC-8112-LX)
+- uc-8112-lx (UC-8112-LX)
 - mc1121 (MC-1121)
 
 You may also find the up-to-date product list by executing:
 
 ```shell
-root@Moxa:~# wget -O- -q http://repo.moxa.online/static/v3/edge/dists/v0.7.0/install.sh | sh
+root@Moxa:~# wget -O- -q http://repo.moxa.online/static/v3/edge/dists/v0.8.0/install.sh | sh
 usage: ./install.sh <product>
 products:
   - mc1121
-  - uc8112-lx-cg
+  - uc-8112-lx-cg
 ```
 
 ### 1.2. Start ThingsPro Edge
