@@ -3,7 +3,7 @@
     "1.Getting Started": ["edge-intro"],
     "2.ThingsPro Development Kit": ["edge-dev"],
     "3.APP Development": ["edge-appdev-app", "edge-appdev-south", "edge-appdev-tag", "edge-appdev-directcmd"],
-    "4.Appendix": ["edge-reference"]
+    "4.Appendix": ["edge-reference", "edge-release"]
   },
   "ui": {
     "1.Getting Started": ["ui-intro", "ui-app-dev", "ui-app-component-config"]
