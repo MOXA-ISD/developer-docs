@@ -19,7 +19,7 @@ pipeline:
     when:
       event: [ push, pull_request ]
     volumes:
-      - /var/tmp:/cache
+      - /var/lib/docker/cache:/cache
 
   upload_doc:
     image: docker.moxa.online/build/nodejs:stretch
@@ -47,4 +47,4 @@ pipeline:
     when:
       event: [ push, pull_request ]
     volumes:
-      - /var/tmp:/cache
+      - /var/lib/docker/cache:/cache

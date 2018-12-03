@@ -1,5 +1,5 @@
 ---
-id: edge-appdev-app
+id: edge-release
 title: Release Notes
 ---
 
