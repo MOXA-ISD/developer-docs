@@ -3,6 +3,35 @@ id: edge-release
 title: Release Notes
 ---
 
+# v0.9.0
+
+New Features
+
+- [Core] Add Resource Manager
+- [Core] Add Log
+- [Core] Add APP icon
+- [TAG] Support direct command and protocol subscription
+- [APP] Release new implementation of device APP for UC-8100 series
+- [APP] APP Modbus Master TCP/RTU support read and write in holding registers and coils
+
+Improvements
+
+- [Core] Dashboard shows System Resource including ThingsPro Core and System
+- [Core] Starting APP in a fixed sequence
+- [APP] APP Azure and Modbus Slave have better UI
+
+Fixes:
+
+- [APP] Fixes bugs of APP Modbus Master TCP/RTU and Azure
+
+Known Issues
+
+- This version must install by run `dpkg --purge cg-appman` first, then install by `wget -O- [http://repo.moxa.online/static/v3/edge/dists/v0.8.0/install.sh](http://repo.moxa.online/static/v3/edge/dists/v0.8.0/install.sh) | sh -s uc-8112-lx`
+
+Breaking Changes
+
+- N/A
+
 # v0.8.0
 
 New Features
