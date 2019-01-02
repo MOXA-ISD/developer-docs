@@ -86,4 +86,4 @@ We use angular to build this app UI starter if you are not familiar with angular
 
 ### Reference
 
-If you want to build your App UI from scratch by yourself, we suggest you to follow our [design guide](assets/ui/design-guide-v1.pdf).
+If you want to build your App UI from scratch by yourself, we suggest you to follow our [design guide](assets/ui/design-guide-v2.pdf).

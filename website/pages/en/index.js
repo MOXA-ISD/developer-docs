@@ -134,7 +134,7 @@ const TryOut = props => (
       </p>
       <div className="button-box">
         <Button href="http://portal.thingspro.io/" target="_blank">
-          Free Taial
+          Free Trial
         </Button>
       </div>
     </div>
