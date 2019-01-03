@@ -51,10 +51,10 @@ The structure of tag list.
 | srcName | source of tag in which the data come from. |
 | tagName | name of tag. |
 | tagType | the type of tag [io, system, virtual. |
-| dataType | the data type of tag \[uint16, uint32, uint64, int16, int32, int64, float32, float64, string, boolean, bytearray\] |
+|  dataType  | the data type of tag \[TAG_VALUE_UINT16, TAG_VALUE_UINT32, TAG_VALUE_UINT, TAG_VALUE_INT16, TAG_VALUE_INT32, TAG_VALUE_INT, TAG_VALUE_FLOAT, TAG_VALUE_DOUBLE, TAG_VALUE_STRING, TAG_VALUE_BOOLEAN, TAG_VALUE_BYTEARRAY\] |
 | dataUnit | the data unit of tag. |
 | duration | polling interval in the unit of millisecond. 0ms means ASAP. |
-| access | the access type of tag `["ro", "wo", "rw"]`. |
+| access | the access type of tag `[ACCESS_RO, ACCESS_WO, ACCESS_RW]`. |
 | default | the default value of tag. (Optional) |
 
 ### mxtag_list
@@ -87,9 +87,9 @@ Be used to obtain tag list in json format by the specific type `tag_type_t`.
 
 **Parameters**
 
-| Name | Description                                                |
-| :--: | :--------------------------------------------------------- |
-| type | the type of tag list, including `io`, `system`, `virtual`. |
+| Name | Description                                                                             |
+| :--: | :-------------------------------------------------------------------------------------- |
+| type | the type of tag list, including [`TAG_TYPE_IO`, `TAG_TYPE_SYSTEM`, `TAG_TYPE_VIRTUAL`]. |
 
 **Returns**
 
@@ -108,7 +108,6 @@ Free memory that was allocated in `mxtag_list`.
 | Name | Description                                                |
 | :--: | :--------------------------------------------------------- |
 | tags | A pointer to the tag list instance.                        |
-| type | the type of tag list, including `io`, `system`, `virtual`. |
 
 **Returns**
 
@@ -126,10 +125,10 @@ None.
         size = mxtag_list(&taglist, TAG_TYPE_IO);
         for (i = 0; i < size; i++) {
             printf("source name: %s\n", taglist[i].source_name);
-            printf("tag name: %s\n", taglist[i].tag_name);
-            printf("data type: %d\n", taglist[i].data_type);
-            printf("data unit: %s\n", taglist[i].data_unit);
-            printf("access: %d\n", taglist[i].access);
+            printf("tag name: %s\n", 	taglist[i].tag_name);
+            printf("data type: %d\n", 	taglist[i].data_type);
+            printf("data unit: %s\n", 	taglist[i].data_unit);
+            printf("access: %d\n", 	taglist[i].access);
             printf("duration: %u ms\n", taglist[i].duration);
         }
 
@@ -161,28 +160,60 @@ None.
 
 ## Tag Pub/Sub API
 
-### mxtag_publish
+### mxtag_new
 
 ```c
-      int mxtag_publish( tag_t           *tag,
-                         const char      *source_name,
-                         const char      *tag_name,
-                         data_value_t    *data_value,
-                         data_type_t      data_type,
-                         const char      *tag_unit,
-                         long long        tag_ts,
+      tag* mxtag_new()
+```
+
+**Returns**
+
+Pointer to a struct of tag on success. NULL on failure.
+Pointer won't be recreated until doing `mxtag_delete`.
+
+---
+
+### mxtag_delete
+
+```c
+      void mxtag_delete(tag* tag_)
 ```
 
 **Parameters**
 
 |    Name     | Description                                                                                                    |
 | :---------: | :------------------------------------------------------------------------------------------------------------- |
-|     tag     | Instance of tag api.                                                                                           |
+|    tag_     | Pointer to a struct tag                                                                                        |
+
+**Returns**
+
+Pointer to a struct of tag on success. NULL on failure.
+Pointer won't be recreated until doing `mxtag_delete`.
+
+---
+
+### mxtag_publish
+
+```c
+      int mxtag_publish( tag             *tag_,
+                         const char      *source_name,
+                         const char      *tag_name,
+                         data_value_t    *data_value,
+                         data_type_t      data_type,
+                         const char      *tag_unit,
+                         long long        tag_ts)
+```
+
+**Parameters**
+
+|    Name     | Description                                                                                                    |
+| :---------: | :------------------------------------------------------------------------------------------------------------- |
+|    tag_     | Pointer to a struct tag                                                                                        |
 | source_name | Source of tag in which the data comes from.                                                                    |
 |  tag_name   | Name of tag.                                                                                                   |
 |   tag_ts    | Publish timestamp in millisecond.                                                                              |
 |  tag_unit   | Unit of tag.                                                                                                   |
-|  data_type  | Data type of tag \[uint16, uint32, uint64, int16, int32, int64, float32, float64, string, boolean, bytearray\] |
+|  data_type  | Data type of tag \[TAG_VALUE_UINT16, TAG_VALUE_UINT32, TAG_VALUE_UINT, TAG_VALUE_INT16, TAG_VALUE_INT32, TAG_VALUE_INT, TAG_VALUE_FLOAT, TAG_VALUE_DOUBLE, TAG_VALUE_STRING, TAG_VALUE_BOOLEAN, TAG_VALUE_BYTEARRAY\] |
 |  data_value | Value of tag.                                                                                                  |
 
 **Returns**
@@ -194,7 +225,7 @@ If the function succeeds, the return value is 0. Otherwise, 1 on failure.
 ### mxtag_subscribe
 
 ```c
-      int mxtag_subscribe( tag_t           *tag,
+      int mxtag_subscribe( tag             *tag_,
                            const char      *source_name,
                            const char      *tag_name )
 ```
@@ -203,7 +234,7 @@ If the function succeeds, the return value is 0. Otherwise, 1 on failure.
 
 |    Name     | Description                                 |
 | :---------: | :------------------------------------------ |
-|     tag     | Instance of tag api.                        |
+|    tag_     | Pointer to a struct tag                                                                                        |
 | source_name | Source of tag in which the data comes from. |
 |  tag_name   | Name of tag.                                |
 
@@ -214,7 +245,7 @@ If the function succeeds, the return value is 0. Otherwise, 1 on failure.
 ### mxtag_unsubscribe
 
 ```c
-      int mxtag_unsubscribe( tag_t           *tag,
+      int mxtag_unsubscribe( tag             *tag_,
                              const char      *source_name,
                              const char      *tag_name )
 ```
@@ -223,7 +254,7 @@ If the function succeeds, the return value is 0. Otherwise, 1 on failure.
 
 |    Name     | Description                                 |
 | :---------: | :------------------------------------------ |
-|     tag     | Instance of tag api.                        |
+|    tag_     | Pointer to a struct tag                                                                                        |
 | source_name | Source of tag in which the data comes from. |
 |  tag_name   | Name of tag.                                |
 
@@ -234,7 +265,7 @@ If the function succeeds, the return value is 0. Otherwise, 1 on failure.
 ### mxtag_subscribe_callback
 
 ```c
-      int mxtag_subscribe_callback( tag_t      *tag,
+      int mxtag_subscribe_callback( tag        *tag_,
                                     on_tag      cb_func )
 ```
 
@@ -258,6 +289,10 @@ If the function succeeds, the return value is 0. Otherwise, 1 on failure.
              const char *argv[])
     {
         tag *tag_ = mxtag_new();
+        if (tag_ == NULL) {
+            printf("Failed to create tag\n");
+            return 1;
+        }
 
         value_t volt;
         volt.d = 1.414;
@@ -288,6 +323,10 @@ If the function succeeds, the return value is 0. Otherwise, 1 on failure.
             const char *argv[])
     {
         tag *tag_ = mxtag_new();
+        if (tag_ == NULL) {
+            printf("Failed to create tag\n");
+            return 1;
+        }
 
         mxtag_subscribe_callback(tag_, on_tag_callback);
 
