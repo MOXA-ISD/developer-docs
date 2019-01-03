@@ -50,11 +50,11 @@ The structure of tag list.
 | :-------: | :----------------------------------------------------------------------------------------------------------------- |
 | srcName | source of tag in which the data come from. |
 | tagName | name of tag. |
-| tagType | the type of tag [io, system, virtual. |
-|  dataType  | the data type of tag \[TAG_VALUE_UINT16, TAG_VALUE_UINT32, TAG_VALUE_UINT, TAG_VALUE_INT16, TAG_VALUE_INT32, TAG_VALUE_INT, TAG_VALUE_FLOAT, TAG_VALUE_DOUBLE, TAG_VALUE_STRING, TAG_VALUE_BOOLEAN, TAG_VALUE_BYTEARRAY\] |
+| tagType | the type of tag \[`TAG_TYPE_IO`, `TAG_TYPE_SYSTEM`, `TAG_TYPE_VIRTUAL`\]. |
+| dataType | the data type of tag \[TAG_VALUE_UINT16, TAG_VALUE_UINT32, TAG_VALUE_UINT, TAG_VALUE_INT16, TAG_VALUE_INT32, TAG_VALUE_INT, TAG_VALUE_FLOAT, TAG_VALUE_DOUBLE, TAG_VALUE_STRING, TAG_VALUE_BOOLEAN, TAG_VALUE_BYTEARRAY\] |
 | dataUnit | the data unit of tag. |
 | duration | polling interval in the unit of millisecond. 0ms means ASAP. |
-| access | the access type of tag `[ACCESS_RO, ACCESS_WO, ACCESS_RW]`. |
+| access | the access type of tag \[`ACCESS_RO`, `ACCESS_WO`, `ACCESS_RW`\]. |
 | default | the default value of tag. (Optional) |
 
 ### mxtag_list
@@ -71,7 +71,7 @@ Be used to obtain tag list by the specific type `tag_type_t`.
 | Name | Description                                                            |
 | :--: | :--------------------------------------------------------------------- |
 | tags | A pointer to the tag list instance which is assigned value afterwards. |
-| type | the type of tag list, including `io`, `system`, `virtual`.             |
+| type | the type of tag list, \[`TAG_TYPE_IO`, `TAG_TYPE_SYSTEM`, `TAG_TYPE_VIRTUAL`\].|
 
 **Returns**
 
@@ -89,7 +89,7 @@ Be used to obtain tag list in json format by the specific type `tag_type_t`.
 
 | Name | Description                                                                             |
 | :--: | :-------------------------------------------------------------------------------------- |
-| type | the type of tag list, including [`TAG_TYPE_IO`, `TAG_TYPE_SYSTEM`, `TAG_TYPE_VIRTUAL`]. |
+| type | the type of tag list, \[`TAG_TYPE_IO`, `TAG_TYPE_SYSTEM`, `TAG_TYPE_VIRTUAL`\].         |
 
 **Returns**
 
