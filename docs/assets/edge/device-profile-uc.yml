@@ -1,0 +1,73 @@
+general:
+  modelName: UC-8112-LX
+  deviceType: gateway
+  cpu: ARMv7 Cortex-A8 1000 MHz
+  memorySize: 536870912
+hardwares:
+- type: ethernet
+  id: 1
+  displayName: ETH1
+  interface: eth0
+  sysPath: /sys/devices/platform/ocp/4a100000.ethernet/net/eth0
+  exclusive: false
+- type: ethernet
+  id: 2
+  displayName: ETH2
+  interface: eth1
+  sysPath: /sys/devices/platform/ocp/4a100000.ethernet/net/eth1
+  exclusive: false
+- type: serial
+  id: 1
+  displayName: PORT 1
+  interface: ttyM0
+  sysPath: /sys/devices/platform/ocp/48022000.serial/tty/ttyS1
+  exclusive: true
+- type: serial
+  id: 2
+  displayName: PORT 2
+  interface: ttyM1
+  sysPath: /sys/devices/platform/ocp/48022000.serial/tty/ttyS2
+  exclusive: true
+tags:
+- tagName: wifiSignal
+  description: wifi signal
+  dataType: int32
+  dataUnit: dbm
+  duration: 1000
+  access: ro
+  default: 100
+- tagName: wifiTxRxBytes
+  description: wifi tx and rx bytes, format %d,%d = tx,rx
+  dataType: string
+  dataUnit: bytes
+  duration: 1000
+  access: ro
+  default: -1
+- tagName: cellularSignal
+  description: Cellular RSSI signal strength of wireless network
+  dataType: int32
+  dataUnit: dBm
+  duration: 1000
+  access: ro
+  default: 0
+- tagName: cellularTxRxBytes
+  description: cellular tx and rx bytes, format %d,%d = tx,rx
+  dataType: string
+  dataUnit: ''
+  duration: 1000
+  access: ro
+  default: -1
+- tagName: gpsLocation
+  description: The latitude and longitude received from Global Positioning System (GPS), format %d,%d = latitude,longitude
+  dataType: string
+  dataUnit: ''
+  duration: 1000
+  access: ro
+  default: 0
+directMethods:
+- name: sendSmsMessage
+  args:
+  - name: phoneNumber
+    type: string
+  - name: message
+    type: string

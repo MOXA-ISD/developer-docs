@@ -2,7 +2,13 @@
   "edge": {
     "1.Getting Started": ["edge-intro"],
     "2.ThingsPro Development Kit": ["edge-dev"],
-    "3.APP Development": ["edge-appdev-app", "edge-appdev-south", "edge-appdev-tag", "edge-appdev-directcmd"],
+    "3.APP Development": [
+      "edge-appdev-app",
+      "edge-appdev-south",
+      "edge-appdev-tag",
+      "edge-appdev-directcmd",
+      "edge-appdev-hardware"
+    ],
     "4.Appendix": ["edge-reference", "edge-release"]
   },
   "ui": {
