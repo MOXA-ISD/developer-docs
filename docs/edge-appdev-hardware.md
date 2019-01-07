@@ -74,7 +74,7 @@ In this document, you learn how to develop a **device type app** that support de
     - apis : refer to [/resman/hardwares](https://app.swaggerhub.com/apis-docs/dorowu/appman/0.10.0#/Resources/get_resman_hardwares_)
       ![he-dev-db](assets/edge/he-dev-db.png)
     - example:
-      ```
+      ```shell
       root@Moxa:~# curl https://127.0.0.1/api/v1/resman/hardwares?type=serial \
       -H "mx-api-token:$(cat /var/thingspro/data/mx-api-token)" -k \
       -X GET | json_pp
@@ -113,36 +113,36 @@ In this document, you learn how to develop a **device type app** that support de
     | url | string | ✔ |e.g. ui/eth/index.html|
     | priority | number | ✔ |order of shortcut items on the left side of the page|
 - Example
-  ```
+  ```yml
   interfaces:
-  - type: ethernet
-    url: ui/eth/index.html
-    priority: 1
-  - type: serial
-    url: ui/serial/index.html
-    priority: 2
+    - type: ethernet
+      url: ui/eth/index.html
+      priority: 1
+    - type: serial
+      url: ui/serial/index.html
+      priority: 2
   ```
 
 ## ThingsPro UC Device APP
 
 - ISD implement a device app called tp-platform has completed the services as follows. Developers can use or replace it with their own service.
-  ```
+  ```yml
   interfaces:
-  - type: general
-    url: ui/general/index.html
-    priority: 50
-  - type: dhcpd
-    url: ui/dhcpd/index.html
-    priority: 60
-  - type: iptables
-    url: ui/iptables/index.html
-    priority: 70
-  - type: route
-    url: ui/route/index.html
-    priority: 80
-  - type: time
-    url: ui/time/index.html
-    priority: 90
+    - type: general
+      url: ui/general/index.html
+      priority: 50
+    - type: dhcpd
+      url: ui/dhcpd/index.html
+      priority: 60
+    - type: iptables
+      url: ui/iptables/index.html
+      priority: 70
+    - type: route
+      url: ui/route/index.html
+      priority: 80
+    - type: time
+      url: ui/time/index.html
+      priority: 90
   ```
 - ISD implement a device app called ucdevice has completed the cellular, ethernet, serial and gps services for developers as sample.
 - repo : https://github.com/MOXA-ISD/edge-device-mil
