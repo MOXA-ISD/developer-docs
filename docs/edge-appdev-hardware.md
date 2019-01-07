@@ -17,10 +17,14 @@ In this document, you learn how to develop a **device type app** that support de
 
 1. Complete device profile.
 2. Complete Web UI for user to configure this hardware .
-3. Complete Hardware service that provide api to : 1. Update information about the hardware interface. 2. Update device database when hardware interface information is updated. Update device database provide user api to :
-   _ Get information about this hardware type.
-   _ Monitor hardware information on-change. 3. Provide this hardware interface specific direct method. 4. Publish system tag when the key of system tag is turned on.
-   ![he-overview](assets/edge/he-overview.png)
+3. Complete Hardware service that provide api to :
+   1. Update information about the hardware interface.
+   2. Update device database when hardware interface information is updated. Update device database provide user api to :
+      - Get information about this hardware type.
+      - Monitor hardware information on-change.
+   3. Provide this hardware interface specific direct method.
+   4. Publish system tag when the key of system tag is turned on.
+      ![he-overview](assets/edge/he-overview.png)
 
 ## Device Profile
 
@@ -46,7 +50,7 @@ In this document, you learn how to develop a **device type app** that support de
   - **tags** **(array)**:
     | Item | Format | Required | Note |
     | ------------- | -------- | -------- | ---- |
-    | srcName | string | ✔ |source name of tag |
+    | srcName | string | |source name of tag, default is system. |
     | tagName | number | ✔ |tag name |
     | dataType | string | ✔ |enum:[uint8, uint16, uint32, uint64, int16, int32, int64, float32, float64, string, boolean, bytearray]|
     | dataUnit | string | |unit of tag |
@@ -61,14 +65,15 @@ In this document, you learn how to develop a **device type app** that support de
 
 ## Hardware Services
 
-- Each hardware in the profile have a **type** attribute, and device app implemented each type of service. The REST APIs that each service must complete is as follows.
+- Each hardware in the profile have a **type** attribute, and device app implemented each type of service.
 - When the developer completes these APIs and updates the database, the user can get information from the device database.
-  - Implement device configuration **RESTful** APIs: \* `PATCH` **_/:type/:id_**
-    _ description : update information about the items in the list of hardware types that match the id.
-    _ `POST` **_/:type/:id_**
-    _ description : The method provided by service.
-    ![he-service-api](assets/edge/he-service-api.png)
-    _ Schema : refer to the [api schema page](https://app.swaggerhub.com/apis-docs/moxa-isd/HardwareEnablementAPIs/1.0).
+  - The device configuration **RESTful** APIs that each service must complete is as follows:
+    - `PATCH` **_/:type/:id_**
+      - description : update information about the items in the list of hardware types that match the id.
+    - `POST` **_/:type/:id_**
+      - description : The method provided by service.
+        ![he-service-api](assets/edge/he-service-api.png)
+    * Schema : refer to the [api schema page](https://app.swaggerhub.com/apis-docs/moxa-isd/HardwareEnablementAPIs/1.0).
   - Get the infomation from device database :
     - description : The device database is like the shadow of the device . Device app update device database when **device app start** and **service information is updated**.
     - apis : refer to [/resman/hardwares](https://app.swaggerhub.com/apis-docs/dorowu/appman/0.10.0#/Resources/get_resman_hardwares_)
@@ -145,4 +150,4 @@ In this document, you learn how to develop a **device type app** that support de
       priority: 90
   ```
 - ISD implement a device app called ucdevice has completed the cellular, ethernet, serial and gps services for developers as sample.
-- repo : https://github.com/MOXA-ISD/edge-device-mil
+  - repo : https://github.com/MOXA-ISD/edge-device-mil
