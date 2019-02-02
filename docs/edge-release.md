@@ -3,6 +3,39 @@ id: edge-release
 title: Release Notes
 ---
 
+# v0.10.0
+
+New Features
+
+- [TAG] Visual tag monitor
+- [APP] New Cloud APPs: AWS and Aliyun
+- [APP] NodeRED: support tag writing
+- [APP] Console: support background service
+
+Improvements
+
+- [Core] APP authentication by nginx
+- [Core] APP customized sidebar menu
+- [Core] APP mx-api-token automount
+- [Core] Fixed IP address of core services
+- [TAG] No longer use sanji
+- [TAG] Use ZeroMQ as tag message communication
+- [TAG] Rewrite in golang
+- [APP] APP Azure and Modbus Slave have better UI
+
+Fixes:
+
+- Fixes many bugs
+
+Known Issues
+
+- Tag UI is not interactive
+- OPCUA Client/Server is not workable
+
+Breaking Changes
+
+- APPs must be compiled in new tagf library
+
 # v0.9.0
 
 New Features
