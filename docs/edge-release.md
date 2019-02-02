@@ -7,21 +7,21 @@ title: Release Notes
 
 New Features
 
-- [TAG] Visual tag monitor
-- [APP] New Cloud APPs: AWS and Aliyun
-- [APP] NodeRED: support tag writing
-- [APP] Console: support background service
+- \[TAG\] Visual tag monitor
+- \[APP\] New Cloud APPs: AWS and Aliyun
+- \[APP\] NodeRED: support tag writing
+- \[APP\] Console: support background service
 
 Improvements
 
-- [Core] APP authentication by nginx
-- [Core] APP customized sidebar menu
-- [Core] APP mx-api-token automount
-- [Core] Fixed IP address of core services
-- [TAG] No longer use sanji
-- [TAG] Use ZeroMQ as tag message communication
-- [TAG] Rewrite in golang
-- [APP] APP Azure and Modbus Slave have better UI
+- \[Core\] APP authentication by nginx
+- \[Core\] APP customized sidebar menu
+- \[Core\] APP mx-api-token automount
+- \[Core\] Fixed IP address of core services
+- \[TAG\] No longer use sanji
+- \[TAG\] Use ZeroMQ as tag message communication
+- \[TAG\] Rewrite in golang
+- \[APP\] APP Azure and Modbus Slave have better UI
 
 Fixes:
 
@@ -40,22 +40,22 @@ Breaking Changes
 
 New Features
 
-- [Core] Add Resource Manager
-- [Core] Add Log
-- [Core] Add APP icon
-- [TAG] Support direct command and protocol subscription
-- [APP] Release new implementation of device APP for UC-8100 series
-- [APP] APP Modbus Master TCP/RTU support read and write in holding registers and coils
+- \[Core\] Add Resource Manager
+- \[Core\] Add Log
+- \[Core\] Add APP icon
+- \[TAG\] Support direct command and protocol subscription
+- \[APP\] Release new implementation of device APP for UC-8100 series
+- \[APP\] APP Modbus Master TCP/RTU support read and write in holding registers and coils
 
 Improvements
 
-- [Core] Dashboard shows System Resource including ThingsPro Core and System
-- [Core] Starting APP in a fixed sequence
-- [APP] APP Azure and Modbus Slave have better UI
+- \[Core\] Dashboard shows System Resource including ThingsPro Core and System
+- \[Core\] Starting APP in a fixed sequence
+- \[APP\] APP Azure and Modbus Slave have better UI
 
 Fixes:
 
-- [APP] Fixes bugs of APP Modbus Master TCP/RTU and Azure
+- \[APP\] Fixes bugs of APP Modbus Master TCP/RTU and Azure
 
 Known Issues
 
@@ -69,27 +69,27 @@ Breaking Changes
 
 New Features
 
-- [Core] New dashboard
-- [Core] Add supports for HTTP server port settings and fail2ban
-- [Core] Re-design sidebar
-- [APP] New APPs: Modbus Slave and NodeRED
-- [APP] Azure supports data logger
-- [APP] Console includes developer toolchain
-- [APP] Modbus TCP Master reconnects automatically
+- \[Core\] New dashboard
+- \[Core\] Add supports for HTTP server port settings and fail2ban
+- \[Core\] Re-design sidebar
+- \[APP\] New APPs: Modbus Slave and NodeRED
+- \[APP\] Azure supports data logger
+- \[APP\] Console includes developer toolchain
+- \[APP\] Modbus TCP Master reconnects automatically
 
 Improvements
 
-- [Core] System Agent is re-written with Golang
-- [Core] APPMAN supports preinst, postinst, prerm, postrm scripts
-- [APP] Many APPs improve its installation time, starting time and image size
+- \[Core\] System Agent is re-written with Golang
+- \[Core\] APPMAN supports preinst, postinst, prerm, postrm scripts
+- \[APP\] Many APPs improve its installation time, starting time and image size
 
 Fixes:
 
-- [Core] Mosquitto reverts to stable version
+- \[Core\] Mosquitto reverts to stable version
 
 Known Issues
 
-- [APP] OPC UA server and client cannot publish tags properly
+- \[APP\] OPC UA server and client cannot publish tags properly
 
 Breaking Changes
 
