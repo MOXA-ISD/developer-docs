@@ -20,38 +20,19 @@ Following is a typical data acquisition example with this scenario: a MODBUS/TCP
 
 ### 1.1. Install ThingsPro Edge
 
-A single command is used to install ThingsPro Edge in MOXA hardware, be sure to run it with root privilege
+Find the installer at http://repo.moxa.online/static/v3/edge/dists/v0.11.0/debs/stretch and install by `dpkg`, be sure to run it with root privilege
 
 ```shell
-root@Moxa:~# wget -O- http://repo.moxa.online/static/v3/edge/dists/v0.10.0/install.sh | sh -s $PRODUCT_NAME
+root@Moxa:~# dpkg -i update_*.deb
 ...
 **********************************************************
 * The installation process ended successfully.
 **********************************************************
 ```
 
-Currently supported products are:
+You may track the progress by `journalctl -u update -f`
 
-- uc-8112-lx (UC-8112-LX)
-- mc1121 (MC-1121)
-
-You may also find the up-to-date product list by executing:
-
-```shell
-root@Moxa:~# wget -O- -q http://repo.moxa.online/static/v3/edge/dists/v0.9.0/install.sh | sh
-usage: ./install.sh <product>
-products:
-  - mc1121
-  - uc-8112-lx-cg
-```
-
-### 1.2. Start ThingsPro Edge
-
-```shell
-root@Moxa:~# service thingspro-edge start
-```
-
-### 1.3. Wait built-in APPs installed
+### 1.2. Wait built-in APPs installed
 
 ThingsPro Edge provides RESTful API for management that is listed in [ThingsPro Edge OAPI server](https://thingspro-edge-oapi.netlify.com/). When first installing ThingsPro Edge, you have to wait a while for installing built-in APPs, such as API service. You can query progress by
 
